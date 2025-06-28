@@ -1,0 +1,115 @@
+/* Responsive Styles for Kissan Connect */
+
+/* General Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Navbar */
+.navbar {
+    padding: 1rem 0;
+}
+
+.navbar-brand img {
+    height: 50px;
+}
+
+/* Hero Section */
+.slider-main {
+    height: auto;
+}
+
+.carousel-item {
+    height: 70vh;
+}
+
+/* Services Section */
+.services-bar {
+    padding: 60px 0;
+}
+
+.card {
+    margin-bottom: 30px;
+}
+
+/* About Section */
+.about-main {
+    padding: 60px 0;
+}
+
+/* Portfolio Section */
+.portfolio-main {
+    padding: 60px 0;
+}
+
+/* CTA Section */
+.cta-section {
+    padding: 40px 0;
+}
+
+/* Footer */
+.footer {
+    padding: 40px 0;
+}
+
+/* Media Queries */
+@media (max-width: 1200px) {
+    .navbar-nav .nav-link {
+        margin: 0 5px;
+    }
+
+    .carousel-caption h3 {
+        font-size: 2.5rem;
+    }
+
+    .carousel-caption p {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 992px) {
+    .services-bar h1 {
+        font-size: 2rem;
+    }
+
+    .about-main h2 {
+        font-size: 1.8rem;
+    }
+
+    .portfolio-main h2 {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        padding: 0.5rem 0;
+    }
+
+    .hero-btn {
+        padding: 10px 20px;
+        font-size: 1rem;
+    }
+
+    .card {
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 576px) {
+    .navbar-nav .nav-link {
+        font-size: 0.9rem;
+    }
+
+    .carousel-caption h3 {
+        font-size: 2rem;
+    }
+
+    .carousel-caption p {
+        font-size: 0.9rem;
+    }
+
+    .cta-section h3 {
+        font-size: 1.5rem;
+    }
+}

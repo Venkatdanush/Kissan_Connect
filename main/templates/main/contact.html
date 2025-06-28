@@ -1,0 +1,592 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Contact Kissan Connect - Get in touch with our team for support, partnerships, or any questions about our AI-powered agricultural solutions.">
+    <meta name="author" content="Kissan Connect Team">
+    <meta name="keywords" content="contact kissan connect, agricultural support, farming help, AI agriculture contact, customer service">
+    
+    <title>Contact Us – Kissan Connect | Get Agricultural Support & Solutions</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌱</text></svg>">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top glass-navbar" id="mainNavbar">
+        <div class="container">
+            <a class="navbar-brand brand-glow" href="{% url 'main:index' %}">
+                <i class="fas fa-seedling me-2 rotating-icon"></i>
+                <span class="brand-text">Kissan Connect</span>
+            </a>
+            
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-modern" href="{% url 'main:index' %}">
+                            <i class="fas fa-home me-1"></i>Home
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-modern" href="{% url 'main:services' %}">
+                            <i class="fas fa-cogs me-1"></i>Services
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-modern" href="{% url 'main:marketplace' %}">
+                            <i class="fas fa-store me-1"></i>Marketplace
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-modern" href="{% url 'main:about' %}">
+                            <i class="fas fa-info-circle me-1"></i>About
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-modern active" href="{% url 'main:contact' %}">
+                            <i class="fas fa-envelope me-1"></i>Contact
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contact Hero Section -->
+    <section class="contact-hero-section">
+        <div class="container">
+            <div class="row justify-content-center text-center">
+                <div class="col-lg-8">
+                    <div class="contact-hero-content" data-aos="fade-up">
+                        <div class="hero-badge mb-4">
+                            <i class="fas fa-headset me-2"></i>
+                            <span>Get in Touch</span>
+                        </div>
+                        <h1 class="contact-hero-title">
+                            We're Here to <span class="text-gradient">Help You Grow</span>
+                        </h1>
+                        <p class="contact-hero-description">
+                            Have questions about our AI-powered agricultural solutions? Need support with your farming challenges? 
+                            Our expert team is ready to assist you on your journey to smarter, more profitable farming.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="contact-hero-animation">
+            <div class="floating-elements">
+                <div class="element element-1"><i class="fas fa-phone"></i></div>
+                <div class="element element-2"><i class="fas fa-envelope"></i></div>
+                <div class="element element-3"><i class="fas fa-map-marker-alt"></i></div>
+                <div class="element element-4"><i class="fas fa-comments"></i></div>
+                <div class="element element-5"><i class="fas fa-headset"></i></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Methods Section -->
+        <!-- Contact Methods Section -->
+    <section class="contact-methods-section">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="contact-method-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <h4 class="contact-method-title">Phone Support</h4>
+                        <p class="contact-method-description">
+                            Speak directly with our agricultural experts for immediate assistance.
+                        </p>
+                        <div class="contact-details">
+                            <a href="tel:+919876543210" class="contact-link">
+                                <i class="fas fa-phone me-2"></i>
+                                +91 98765 43210
+                            </a>
+                            <p class="contact-hours">Mon-Sat: 9AM-7PM IST</p>
+                        </div>
+                        <a href="tel:+919876543210" class="btn-contact-method">
+                            <i class="fas fa-phone-alt"></i>
+                            Call Now
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="contact-method-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <h4 class="contact-method-title">Email Support</h4>
+                        <p class="contact-method-description">
+                            Send us detailed questions and get comprehensive responses from our team.
+                        </p>
+                        <div class="contact-details">
+                            <a href="mailto:support@kissanconnect.com" class="contact-link">
+                                <i class="fas fa-envelope me-2"></i>
+                                support@kissanconnect.com
+                            </a>
+                            <p class="contact-hours">Response within 2 hours</p>
+                        </div>
+                        <a href="mailto:support@kissanconnect.com" class="btn-contact-method">
+                            <i class="fas fa-paper-plane"></i>
+                            Send Email
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="contact-method-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-comments"></i>
+                        </div>
+                        <h4 class="contact-method-title">Live Chat</h4>
+                        <p class="contact-method-description">
+                            Get instant answers through our AI-powered chat assistant available 24/7.
+                        </p>
+                        <div class="contact-details">
+                            <a href="#" class="contact-link" onclick="openChatbot()">
+                                <i class="fas fa-robot me-2"></i>
+                                AI-Powered Assistant
+                            </a>
+                            <p class="contact-hours">Available 24/7</p>
+                        </div>
+                        <a href="#" class="btn-contact-method" onclick="openChatbot()">
+                            <i class="fas fa-comment-dots"></i>
+                            Start Chat
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form Section -->
+    <section class="contact-form-section">
+        <div class="container">
+            <div class="row">
+                <!-- Contact Form -->
+                <div class="col-lg-8" data-aos="fade-right">
+                    <div class="contact-form-container">
+                        <div class="form-header">
+                            <h3 class="form-title">Send us a Message</h3>
+                            <p class="form-subtitle">
+                                Fill out the form below and we'll get back to you as soon as possible.
+                            </p>
+                        </div>
+                        
+                        <form class="contact-form" id="contactForm">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <div class="form-group-modern">
+                                        <input type="text" class="form-control-modern" id="firstName" name="firstName" required>
+                                        <label for="firstName" class="form-label-modern">
+                                            <i class="fas fa-user me-2"></i>First Name
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group-modern">
+                                        <input type="text" class="form-control-modern" id="lastName" name="lastName" required>
+                                        <label for="lastName" class="form-label-modern">
+                                            <i class="fas fa-user me-2"></i>Last Name
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group-modern">
+                                        <input type="email" class="form-control-modern" id="email" name="email" required>
+                                        <label for="email" class="form-label-modern">
+                                            <i class="fas fa-envelope me-2"></i>Email Address
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group-modern">
+                                        <input type="tel" class="form-control-modern" id="phone" name="phone">
+                                        <label for="phone" class="form-label-modern">
+                                            <i class="fas fa-phone me-2"></i>Phone Number
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group-modern">
+                                        <select class="form-control-modern" id="subject" name="subject" required>
+                                            <option value="">Select a topic</option>
+                                            <option value="general">General Inquiry</option>
+                                            <option value="support">Technical Support</option>
+                                            <option value="sales">Sales & Pricing</option>
+                                            <option value="partnership">Partnership</option>
+                                            <option value="feedback">Feedback</option>
+                                            <option value="other">Other</option>
+                                        </select>
+                                        <label for="subject" class="form-label-modern">
+                                            <i class="fas fa-tag me-2"></i>Subject
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group-modern">
+                                        <textarea class="form-control-modern" id="message" name="message" rows="5" required></textarea>
+                                        <label for="message" class="form-label-modern">
+                                            <i class="fas fa-comment me-2"></i>Your Message
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-check-modern">
+                                        <input type="checkbox" class="form-check-input" id="newsletter" name="newsletter">
+                                        <label class="form-check-label" for="newsletter">
+                                            Subscribe to our newsletter for agricultural tips and updates
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <button type="submit" class="btn btn-submit-modern">
+                                        <i class="fas fa-paper-plane me-2"></i>
+                                        Send Message
+                                        <span class="btn-shine"></span>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="col-lg-4" data-aos="fade-left">
+                    <div class="contact-info-sidebar">
+                        <h4 class="sidebar-title">Get in Touch</h4>
+                        <p class="sidebar-description">
+                            Ready to transform your farming with AI? We're here to help you every step of the way.
+                        </p>
+
+                        <div class="contact-info-item">
+                            <div class="info-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="info-content">
+                                <h5>Our Office</h5>
+                                <p>
+                                    Tech Hub, Sector 62<br>
+                                    Noida, Uttar Pradesh 201309<br>
+                                    India
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="contact-info-item">
+                            <div class="info-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="info-content">
+                                <h5>Call Us</h5>
+                                <p>
+                                    <a href="tel:+919876543210">+91 98765 43210</a><br>
+                                    <small>Mon-Sat: 9AM-7PM IST</small>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="contact-info-item">
+                            <div class="info-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="info-content">
+                                <h5>Email Us</h5>
+                                <p>
+                                    <a href="mailto:support@kissanconnect.com">support@kissanconnect.com</a><br>
+                                    <a href="mailto:sales@kissanconnect.com">sales@kissanconnect.com</a>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="social-links-contact">
+                            <h5>Follow Us</h5>
+                            <div class="social-icons">
+                                <a href="#" class="social-icon-contact">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <a href="#" class="social-icon-contact">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a href="#" class="social-icon-contact">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                                <a href="#" class="social-icon-contact">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </a>
+                                <a href="#" class="social-icon-contact">
+                                    <i class="fab fa-youtube"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+            <div class="text-center mb-5">
+                <div class="section-badge" data-aos="fade-up">
+                    <i class="fas fa-question-circle me-2"></i>
+                    <span>FAQ</span>
+                </div>
+                <h2 class="section-title-modern" data-aos="fade-up" data-aos-delay="100">
+                    Frequently Asked <span class="text-gradient">Questions</span>
+                </h2>
+                <p class="section-subtitle-modern" data-aos="fade-up" data-aos-delay="200">
+                    Quick answers to common questions about our services
+                </p>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="accordion accordion-modern" id="faqAccordion">
+                        <!-- FAQ 1 -->
+                        <div class="accordion-item" data-aos="fade-up" data-aos-delay="100">
+                            <h2 class="accordion-header" id="faq1">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1">
+                                    <i class="fas fa-seedling me-3"></i>
+                                    How accurate are the AI crop suggestions?
+                                </button>
+                            </h2>
+                            <div id="collapse1" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Our AI models achieve 95%+ accuracy by analyzing soil conditions, weather patterns, 
+                                    historical data, and market trends. The system continuously learns and improves 
+                                    from farmer feedback and real-world results.
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- FAQ 2 -->
+                        <div class="accordion-item" data-aos="fade-up" data-aos-delay="200">
+                            <h2 class="accordion-header" id="faq2">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2">
+                                    <i class="fas fa-mobile-alt me-3"></i>
+                                    Do you have a mobile app?
+                                </button>
+                            </h2>
+                            <div id="collapse2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Yes! Our mobile app is available for both Android and iOS. It includes all our 
+                                    features: crop suggestions, weather alerts, disease detection, and marketplace access. 
+                                    Download from Google Play Store or Apple App Store.
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- FAQ 3 -->
+                        <div class="accordion-item" data-aos="fade-up" data-aos-delay="300">
+                            <h2 class="accordion-header" id="faq3">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse3">
+                                    <i class="fas fa-rupee-sign me-3"></i>
+                                    What are your pricing plans?
+                                </button>
+                            </h2>
+                            <div id="collapse3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    We offer flexible pricing: Basic (₹999/month), Professional (₹2,499/month), 
+                                    and Enterprise (₹4,999/month). Each plan includes different features and usage limits. 
+                                    Visit our Services page for detailed comparison.
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- FAQ 4 -->
+                        <div class="accordion-item" data-aos="fade-up" data-aos-delay="400">
+                            <h2 class="accordion-header" id="faq4">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse4">
+                                    <i class="fas fa-microscope me-3"></i>
+                                    How does disease detection work?
+                                </button>
+                            </h2>
+                            <div id="collapse4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Simply upload clear photos of affected plant parts. Our computer vision AI analyzes 
+                                    the images and identifies diseases within seconds. You'll receive detailed information 
+                                    about the disease, treatment options, and prevention strategies.
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- FAQ 5 -->
+                        <div class="accordion-item" data-aos="fade-up" data-aos-delay="500">
+                            <h2 class="accordion-header" id="faq5">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse5">
+                                    <i class="fas fa-headset me-3"></i>
+                                    What kind of support do you provide?
+                                </button>
+                            </h2>
+                            <div id="collapse5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    We offer multiple support channels: 24/7 AI chatbot, email support (2-hour response), 
+                                    phone support during business hours, video tutorials, and comprehensive documentation. 
+                                    Enterprise customers get dedicated account managers.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section-modern">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center">
+                    <div class="cta-content" data-aos="fade-up">
+                        <div class="cta-icon">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <h2 class="cta-title">Ready to Get Started?</h2>
+                        <p class="cta-description">
+                            Join thousands of farmers who've already transformed their agricultural practices 
+                            with Kissan Connect's AI-powered solutions.
+                        </p>
+                        <div class="cta-buttons">
+                            <a href="{% url 'main:services' %}" class="btn btn-cta-primary">
+                                <i class="fas fa-seedling me-2"></i>
+                                Explore Services
+                                <span class="btn-shine"></span>
+                            </a>
+                            <a href="#" class="btn btn-cta-outline" onclick="openChatbot()">
+                                <i class="fas fa-comments me-2"></i>
+                                Chat with AI
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Enhanced Footer -->
+    <footer class="footer-modern">
+        <div class="container">
+            <div class="footer-content">
+                <div class="row">
+                    <!-- Brand Section -->
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="footer-brand-modern">
+                            <i class="fas fa-seedling me-2"></i>
+                            <span>Kissan Connect</span>
+                        </div>
+                        <p class="footer-description-modern">
+                            Empowering farmers with cutting-edge AI technology for a sustainable 
+                            and prosperous agricultural future.
+                        </p>
+                        <div class="social-links-modern">
+                            <a href="#" class="social-link-modern">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#" class="social-link-modern">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#" class="social-link-modern">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="#" class="social-link-modern">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Quick Links -->
+                    <div class="col-lg-2 col-md-6 mb-4">
+                        <h6 class="footer-title-modern">Services</h6>
+                        <ul class="footer-links-modern">
+                            <li><a href="{% url 'main:crop_suggestions' %}">Crop Suggestions</a></li>
+                            <li><a href="{% url 'main:weather' %}">Weather Alerts</a></li>
+                            <li><a href="{% url 'main:disease_detection' %}">Disease Detection</a></li>
+                            <li><a href="{% url 'main:marketplace' %}">Marketplace</a></li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Company -->
+                    <div class="col-lg-2 col-md-6 mb-4">
+                        <h6 class="footer-title-modern">Company</h6>
+                        <ul class="footer-links-modern">
+                            <li><a href="{% url 'main:about' %}">About Us</a></li>
+                            <li><a href="#">Careers</a></li>
+                            <li><a href="#">Press</a></li>
+                            <li><a href="#">Blog</a></li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Support -->
+                    <div class="col-lg-2 col-md-6 mb-4">
+                        <h6 class="footer-title-modern">Support</h6>
+                        <ul class="footer-links-modern">
+                            <li><a href="#">Help Center</a></li>
+                            <li><a href="#">Documentation</a></li>
+                            <li><a href="#">Community</a></li>
+                            <li><a href="{% url 'main:contact' %}">Contact</a></li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Contact -->
+                    <div class="col-lg-2 col-md-6 mb-4">
+                        <h6 class="footer-title-modern">Contact</h6>
+                        <div class="contact-info-modern">
+                            <div class="contact-item-modern">
+                                <i class="fas fa-envelope"></i>
+                                <span>info@kissanconnect.com</span>
+                            </div>
+                            <div class="contact-item-modern">
+                                <i class="fas fa-phone"></i>
+                                <span>+91 98765 43210</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom-modern">
+                <div class="row align-items-center">
+                    <div class="col-md-6">
+                        <p>&copy; 2024 Kissan Connect. All rights reserved.</p>
+                    </div>
+                    <div class="col-md-6 text-md-end">
+                        <a href="#" class="footer-link-modern">Privacy Policy</a>
+                        <a href="#" class="footer-link-modern">Terms of Service</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Action Button -->
+    <div class="floating-chat-modern" onclick="openChatbot()">
+        <i class="fas fa-comments"></i>
+        <span class="chat-pulse"></span>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+</body>
+</html>

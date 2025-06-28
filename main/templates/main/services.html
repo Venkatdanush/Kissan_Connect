@@ -1,0 +1,565 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Kissan Connect Services - AI-powered crop suggestions, weather intelligence, disease detection, marketplace, and more agricultural solutions.">
+    <meta name="author" content="Kissan Connect Team">
+    <meta name="keywords" content="agriculture services, AI farming, crop suggestions, weather alerts, disease detection, digital marketplace">
+    
+    <title>Our Services – Kissan Connect | AI-Powered Agricultural Solutions</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌱</text></svg>">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top glass-navbar" id="mainNavbar">
+        <div class="container">
+            <a class="navbar-brand brand-glow" href="{% url 'main:index' %}">
+                <i class="fas fa-seedling me-2 rotating-icon"></i>
+                <span class="brand-text">Kissan Connect</span>
+            </a>
+            
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-modern" href="{% url 'main:index' %}">
+                            <i class="fas fa-home me-1"></i>Home
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-modern active" href="{% url 'main:services' %}">
+                            <i class="fas fa-cogs me-1"></i>Services
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-modern" href="{% url 'main:marketplace' %}">
+                            <i class="fas fa-store me-1"></i>Marketplace
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-modern" href="{% url 'main:about' %}">
+                            <i class="fas fa-info-circle me-1"></i>About
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-modern" href="{% url 'main:contact' %}">
+                            <i class="fas fa-envelope me-1"></i>Contact
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Services Hero Section -->
+    <section class="services-hero-section">
+        <div class="container">
+            <div class="row justify-content-center text-center">
+                <div class="col-lg-8">
+                    <div class="services-hero-content" data-aos="fade-up">
+                        <div class="hero-badge mb-4">
+                            <i class="fas fa-cogs me-2"></i>
+                            <span>Premium Services</span>
+                        </div>
+                        <h1 class="services-hero-title">
+                            Comprehensive <span class="text-gradient">AI Solutions</span>
+                            <br>for Modern Farmers
+                        </h1>
+                        <p class="services-hero-description">
+                            Transform your agricultural practices with our cutting-edge AI-powered tools
+                            designed to maximize productivity, minimize risks, and boost profits.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="services-hero-animation">
+            <div class="floating-elements">
+                <div class="element element-1"><i class="fas fa-seedling"></i></div>
+                <div class="element element-2"><i class="fas fa-cloud-sun"></i></div>
+                <div class="element element-3"><i class="fas fa-microscope"></i></div>
+                <div class="element element-4"><i class="fas fa-robot"></i></div>
+                <div class="element element-5"><i class="fas fa-leaf"></i></div>
+                <div class="element element-6"><i class="fas fa-store"></i></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Services Section -->
+    <section class="main-services-section">
+        <div class="container">
+            <div class="row g-4">
+                <!-- AI Crop Suggestions -->
+                <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="service-card-large service-green">
+                        <div class="service-header">
+                            <div class="service-icon-large">
+                                <i class="fas fa-brain"></i>
+                            </div>
+                            <div class="service-info">
+                                <h3 class="service-title-large">AI Crop Suggestions</h3>
+                                <p class="service-subtitle">Smart recommendations powered by machine learning</p>
+                            </div>
+                        </div>
+                        <div class="service-content">
+                            <p class="service-description">
+                                Get personalized crop recommendations based on comprehensive analysis of soil conditions, 
+                                weather patterns, historical data, and market trends. Our AI algorithms process thousands 
+                                of variables to suggest the most profitable crops for your specific location and conditions.
+                            </p>
+                            <ul class="service-features">
+                                <li><i class="fas fa-check"></i> Soil analysis integration</li>
+                                <li><i class="fas fa-check"></i> Weather pattern analysis</li>
+                                <li><i class="fas fa-check"></i> Market price predictions</li>
+                                <li><i class="fas fa-check"></i> Seasonal recommendations</li>
+                            </ul>
+                            <div class="service-actions">
+                                <a href="#" class="btn btn-service-primary">
+                                    Try AI Suggestions
+                                    <i class="fas fa-arrow-right ms-2"></i>
+                                </a>
+                                <span class="service-badge">Most Popular</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Weather Intelligence -->
+                <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="service-card-large service-blue">
+                        <div class="service-header">
+                            <div class="service-icon-large">
+                                <i class="fas fa-satellite"></i>
+                            </div>
+                            <div class="service-info">
+                                <h3 class="service-title-large">Weather Intelligence</h3>
+                                <p class="service-subtitle">Advanced meteorological insights and alerts</p>
+                            </div>
+                        </div>
+                        <div class="service-content">
+                            <p class="service-description">
+                                Stay ahead with real-time weather data, severe weather alerts, and long-term climate 
+                                predictions. Our weather intelligence system helps you plan farming activities, 
+                                protect crops, and optimize irrigation schedules.
+                            </p>
+                            <ul class="service-features">
+                                <li><i class="fas fa-check"></i> Real-time weather updates</li>
+                                <li><i class="fas fa-check"></i> 15-day accurate forecasts</li>
+                                <li><i class="fas fa-check"></i> Severe weather alerts</li>
+                                <li><i class="fas fa-check"></i> Irrigation scheduling</li>
+                            </ul>
+                            <div class="service-actions">
+                                <a href="#" class="btn btn-service-secondary">
+                                    Check Weather
+                                    <i class="fas fa-arrow-right ms-2"></i>
+                                </a>
+                                <span class="service-badge">Real-time</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Disease Detection -->
+                <div class="col-lg-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="service-card-large service-orange">
+                        <div class="service-header">
+                            <div class="service-icon-large">
+                                <i class="fas fa-microscope"></i>
+                            </div>
+                            <div class="service-info">
+                                <h3 class="service-title-large">Disease Detection</h3>
+                                <p class="service-subtitle">AI-powered plant health diagnostics</p>
+                            </div>
+                        </div>
+                        <div class="service-content">
+                            <p class="service-description">
+                                Upload plant images for instant disease identification using advanced computer vision. 
+                                Get detailed treatment recommendations, both organic and chemical solutions, along with 
+                                prevention strategies to keep your crops healthy.
+                            </p>
+                            <ul class="service-features">
+                                <li><i class="fas fa-check"></i> Instant disease identification</li>
+                                <li><i class="fas fa-check"></i> Treatment recommendations</li>
+                                <li><i class="fas fa-check"></i> Organic & chemical solutions</li>
+                                <li><i class="fas fa-check"></i> Prevention strategies</li>
+                            </ul>
+                            <div class="service-actions">
+                                <a href="#" class="btn btn-service-accent">
+                                    Detect Disease
+                                    <i class="fas fa-arrow-right ms-2"></i>
+                                </a>
+                                <span class="service-badge">AI-Powered</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Digital Marketplace -->
+                <div class="col-lg-6" data-aos="fade-up" data-aos-delay="400">
+                    <div class="service-card-large service-purple">
+                        <div class="service-header">
+                            <div class="service-icon-large">
+                                <i class="fas fa-store"></i>
+                            </div>
+                            <div class="service-info">
+                                <h3 class="service-title-large">Digital Marketplace</h3>
+                                <p class="service-subtitle">Direct-to-consumer sales platform</p>
+                            </div>
+                        </div>
+                        <div class="service-content">
+                            <p class="service-description">
+                                Connect directly with consumers and retailers through our digital marketplace. 
+                                Set your own prices, showcase your produce with high-quality images, and build 
+                                lasting relationships with customers who value fresh, quality products.
+                            </p>
+                            <ul class="service-features">
+                                <li><i class="fas fa-check"></i> Direct sales to consumers</li>
+                                <li><i class="fas fa-check"></i> Set your own prices</li>
+                                <li><i class="fas fa-check"></i> Quality showcase tools</li>
+                                <li><i class="fas fa-check"></i> Customer relationship management</li>
+                            </ul>
+                            <div class="service-actions">
+                                <a href="{% url 'main:marketplace' %}" class="btn btn-service-purple">
+                                    Visit Marketplace
+                                    <i class="fas fa-arrow-right ms-2"></i>
+                                </a>
+                                <span class="service-badge">Best Prices</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Carbon Credit Tracker -->
+                <div class="col-lg-6" data-aos="fade-up" data-aos-delay="500">
+                    <div class="service-card-large service-teal">
+                        <div class="service-header">
+                            <div class="service-icon-large">
+                                <i class="fas fa-leaf"></i>
+                            </div>
+                            <div class="service-info">
+                                <h3 class="service-title-large">Carbon Credit Tracker</h3>
+                                <p class="service-subtitle">Sustainable farming rewards program</p>
+                            </div>
+                        </div>
+                        <div class="service-content">
+                            <p class="service-description">
+                                Track your sustainable farming practices and earn carbon credits for eco-friendly methods. 
+                                Monitor your environmental impact, get sustainability certifications, and monetize your 
+                                contribution to carbon reduction efforts.
+                            </p>
+                            <ul class="service-features">
+                                <li><i class="fas fa-check"></i> Carbon footprint tracking</li>
+                                <li><i class="fas fa-check"></i> Sustainability certifications</li>
+                                <li><i class="fas fa-check"></i> Credit monetization</li>
+                                <li><i class="fas fa-check"></i> Environmental impact reports</li>
+                            </ul>
+                            <div class="service-actions">
+                                <a href="#" class="btn btn-service-teal">
+                                    Track Credits
+                                    <i class="fas fa-arrow-right ms-2"></i>
+                                </a>
+                                <span class="service-badge">Eco-Friendly</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AI Farm Assistant -->
+                <div class="col-lg-6" data-aos="fade-up" data-aos-delay="600">
+                    <div class="service-card-large service-red">
+                        <div class="service-header">
+                            <div class="service-icon-large">
+                                <i class="fas fa-robot"></i>
+                            </div>
+                            <div class="service-info">
+                                <h3 class="service-title-large">AI Farm Assistant</h3>
+                                <p class="service-subtitle">24/7 intelligent agricultural support</p>
+                            </div>
+                        </div>
+                        <div class="service-content">
+                            <p class="service-description">
+                                Get instant answers to your farming questions with our AI-powered chatbot. 
+                                Available 24/7 to provide agricultural guidance, crop care tips, pest management 
+                                advice, and farming best practices tailored to your specific needs.
+                            </p>
+                            <ul class="service-features">
+                                <li><i class="fas fa-check"></i> 24/7 availability</li>
+                                <li><i class="fas fa-check"></i> Instant expert answers</li>
+                                <li><i class="fas fa-check"></i> Personalized advice</li>
+                                <li><i class="fas fa-check"></i> Multi-language support</li>
+                            </ul>
+                            <div class="service-actions">
+                                <a href="#" class="btn btn-service-red" onclick="openChatbot()">
+                                    Chat with AI
+                                    <i class="fas fa-arrow-right ms-2"></i>
+                                </a>
+                                <span class="service-badge">24/7 Support</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing-section">
+        <div class="container">
+            <div class="text-center mb-5">
+                <div class="section-badge" data-aos="fade-up">
+                    <i class="fas fa-tag me-2"></i>
+                    <span>Pricing Plans</span>
+                </div>
+                <h2 class="section-title-modern" data-aos="fade-up" data-aos-delay="100">
+                    Choose Your <span class="text-gradient">Perfect Plan</span>
+                </h2>
+                <p class="section-subtitle-modern" data-aos="fade-up" data-aos-delay="200">
+                    Flexible pricing options designed for farms of all sizes
+                </p>
+            </div>
+
+            <div class="row justify-content-center">
+                <!-- Basic Plan -->
+                <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="pricing-card">
+                        <div class="pricing-header">
+                            <h4 class="pricing-title">Basic</h4>
+                            <div class="pricing-price">
+                                <span class="currency">₹</span>
+                                <span class="amount">999</span>
+                                <span class="period">/month</span>
+                            </div>
+                            <p class="pricing-description">Perfect for small farms getting started</p>
+                        </div>
+                        <div class="pricing-features">
+                            <ul>
+                                <li><i class="fas fa-check"></i> AI Crop Suggestions (5 per month)</li>
+                                <li><i class="fas fa-check"></i> Weather Intelligence</li>
+                                <li><i class="fas fa-check"></i> Disease Detection (10 scans)</li>
+                                <li><i class="fas fa-check"></i> Basic Marketplace Access</li>
+                                <li><i class="fas fa-check"></i> Email Support</li>
+                            </ul>
+                        </div>
+                        <div class="pricing-action">
+                            <a href="#" class="btn btn-pricing-basic">Get Started</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pro Plan -->
+                <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="pricing-card pricing-popular">
+                        <div class="popular-badge">Most Popular</div>
+                        <div class="pricing-header">
+                            <h4 class="pricing-title">Professional</h4>
+                            <div class="pricing-price">
+                                <span class="currency">₹</span>
+                                <span class="amount">2499</span>
+                                <span class="period">/month</span>
+                            </div>
+                            <p class="pricing-description">Ideal for medium to large farms</p>
+                        </div>
+                        <div class="pricing-features">
+                            <ul>
+                                <li><i class="fas fa-check"></i> Unlimited AI Crop Suggestions</li>
+                                <li><i class="fas fa-check"></i> Advanced Weather Intelligence</li>
+                                <li><i class="fas fa-check"></i> Unlimited Disease Detection</li>
+                                <li><i class="fas fa-check"></i> Premium Marketplace Features</li>
+                                <li><i class="fas fa-check"></i> Carbon Credit Tracker</li>
+                                <li><i class="fas fa-check"></i> AI Farm Assistant</li>
+                                <li><i class="fas fa-check"></i> Priority Support</li>
+                            </ul>
+                        </div>
+                        <div class="pricing-action">
+                            <a href="#" class="btn btn-pricing-pro">Choose Pro</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Enterprise Plan -->
+                <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="pricing-card">
+                        <div class="pricing-header">
+                            <h4 class="pricing-title">Enterprise</h4>
+                            <div class="pricing-price">
+                                <span class="currency">₹</span>
+                                <span class="amount">4999</span>
+                                <span class="period">/month</span>
+                            </div>
+                            <p class="pricing-description">For large agricultural businesses</p>
+                        </div>
+                        <div class="pricing-features">
+                            <ul>
+                                <li><i class="fas fa-check"></i> Everything in Professional</li>
+                                <li><i class="fas fa-check"></i> Custom AI Model Training</li>
+                                <li><i class="fas fa-check"></i> Advanced Analytics Dashboard</li>
+                                <li><i class="fas fa-check"></i> Multi-farm Management</li>
+                                <li><i class="fas fa-check"></i> API Access</li>
+                                <li><i class="fas fa-check"></i> Dedicated Account Manager</li>
+                                <li><i class="fas fa-check"></i> 24/7 Phone Support</li>
+                            </ul>
+                        </div>
+                        <div class="pricing-action">
+                            <a href="#" class="btn btn-pricing-enterprise">Contact Sales</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section-modern">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center">
+                    <div class="cta-content" data-aos="fade-up">
+                        <div class="cta-icon">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <h2 class="cta-title">Ready to Get Started?</h2>
+                        <p class="cta-description">
+                            Join thousands of farmers who've already transformed their agricultural practices 
+                            with Kissan Connect's AI-powered solutions.
+                        </p>
+                        <div class="cta-buttons">
+                            <a href="#" class="btn btn-cta-primary">
+                                <i class="fas fa-seedling me-2"></i>
+                                Try AI Suggestions
+                                <span class="btn-shine"></span>
+                            </a>
+                            <a href="{% url 'main:contact' %}" class="btn btn-cta-outline">
+                                <i class="fas fa-phone me-2"></i>
+                                Contact Sales
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Enhanced Footer -->
+    <footer class="footer-modern">
+        <div class="container">
+            <div class="footer-content">
+                <div class="row">
+                    <!-- Brand Section -->
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="footer-brand-modern">
+                            <i class="fas fa-seedling me-2"></i>
+                            <span>Kissan Connect</span>
+                        </div>
+                        <p class="footer-description-modern">
+                            Empowering farmers with cutting-edge AI technology for a sustainable 
+                            and prosperous agricultural future.
+                        </p>
+                        <div class="social-links-modern">
+                            <a href="#" class="social-link-modern">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#" class="social-link-modern">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#" class="social-link-modern">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="#" class="social-link-modern">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Quick Links -->
+                    <div class="col-lg-2 col-md-6 mb-4">
+                        <h6 class="footer-title-modern">Services</h6>
+                        <ul class="footer-links-modern">
+                            <li><a href="#">Crop Suggestions</a></li>
+                            <li><a href="#">Weather Alerts</a></li>
+                            <li><a href="#">Disease Detection</a></li>
+                            <li><a href="{% url 'main:marketplace' %}">Marketplace</a></li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Company -->
+                    <div class="col-lg-2 col-md-6 mb-4">
+                        <h6 class="footer-title-modern">Company</h6>
+                        <ul class="footer-links-modern">
+                            <li><a href="{% url 'main:about' %}">About Us</a></li>
+                            <li><a href="#">Careers</a></li>
+                            <li><a href="#">Press</a></li>
+                            <li><a href="#">Blog</a></li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Support -->
+                    <div class="col-lg-2 col-md-6 mb-4">
+                        <h6 class="footer-title-modern">Support</h6>
+                        <ul class="footer-links-modern">
+                            <li><a href="#">Help Center</a></li>
+                            <li><a href="#">Documentation</a></li>
+                            <li><a href="#">Community</a></li>
+                            <li><a href="{% url 'main:contact' %}">Contact</a></li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Contact -->
+                    <div class="col-lg-2 col-md-6 mb-4">
+                        <h6 class="footer-title-modern">Contact</h6>
+                        <div class="contact-info-modern">
+                            <div class="contact-item-modern">
+                                <i class="fas fa-envelope"></i>
+                                <span>info@kissanconnect.com</span>
+                            </div>
+                            <div class="contact-item-modern">
+                                <i class="fas fa-phone"></i>
+                                <span>+91 98765 43210</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom-modern">
+                <div class="row align-items-center">
+                    <div class="col-md-6">
+                        <p>&copy; 2024 Kissan Connect. All rights reserved.</p>
+                    </div>
+                    <div class="col-md-6 text-md-end">
+                        <a href="#" class="footer-link-modern">Privacy Policy</a>
+                        <a href="#" class="footer-link-modern">Terms of Service</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Action Button -->
+    <div class="floating-chat-modern" onclick="openChatbot()">
+        <i class="fas fa-comments"></i>
+        <span class="chat-pulse"></span>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+</body>
+</html>

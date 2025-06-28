@@ -1,0 +1,35 @@
+{% load static %}
+
+<!DOCTYPE html>
+<footer class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-md-6">
+                <h5 class="footer-title">Find Us</h5>
+                <p>Kissan Connect - Bridging the gap between traditional farming and modern technology.</p>
+                <p><i class="fas fa-map-marker-alt"></i> Agricultural Innovation Hub, Sector 18, Gurgaon</p>
+                <p><i class="fas fa-phone"></i> +91-9999-878-398</p>
+                <p><i class="fas fa-envelope"></i> connect@kissanconnect.com</p>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <h5 class="footer-title">Follow Us</h5>
+                <ul class="social-links">
+                    <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
+                    <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
+                    <li><a href="#"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <h5 class="footer-title">Quick Links</h5>
+                <ul class="quick-links">
+                    <li><a href="{% url 'main:about' %}">About Us</a></li>
+                    <li><a href="{% url 'main:services' %}">Our Services</a></li>
+                    <li><a href="{% url 'main:contact' %}">Contact Support</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom text-center">
+            <p>&copy; 2024 Kissan Connect. All Rights Reserved.</p>
+        </div>
+    </div>
+</footer>

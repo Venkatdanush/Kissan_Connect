@@ -1,0 +1,1332 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta
+      name="description"
+      content="Get AI-powered crop recommendations based on soil conditions, weather data, and farming parameters."
+    />
+    <meta name="author" content="Kissan Connect Team" />
+    <meta
+      name="keywords"
+      content="crop suggestions, AI farming, crop recommendation, soil analysis, weather farming"
+    />
+
+    <title>
+      AI Crop Suggestions – Kissan Connect | Smart Farming Recommendations
+    </title>
+
+    <!-- Bootstrap 5 CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome 6 -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <!-- Custom CSS -->
+    <link href="{% static 'css/style.css' %}" rel="stylesheet" />
+
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌱</text></svg>"
+    />
+  </head>
+
+  <body>
+    <!-- Navigation -->
+    <nav
+      class="navbar navbar-expand-lg navbar-dark fixed-top glass-navbar"
+      id="mainNavbar"
+    >
+      <div class="container">
+        <a class="navbar-brand brand-glow" href="{% url 'main:index' %}">
+          <i class="fas fa-seedling me-2 rotating-icon"></i>
+          <span class="brand-text">Kissan Connect</span>
+        </a>
+
+        <button
+          class="navbar-toggler border-0"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link nav-link-modern" href="{% url 'main:index' %}">
+                <i class="fas fa-home me-1"></i>Home
+              </a>
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link nav-link-modern"
+                href="{% url 'main:services' %}"
+              >
+                <i class="fas fa-cogs me-1"></i>Services
+              </a>
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link nav-link-modern active"
+                href="{% url 'main:crop_suggestions' %}"
+              >
+                <i class="fas fa-brain me-1"></i>Crop AI
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link nav-link-modern" href="{% url 'main:about' %}">
+                <i class="fas fa-info-circle me-1"></i>About
+              </a>
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link nav-link-modern"
+                href="{% url 'main:contact' %}"
+              >
+                <i class="fas fa-envelope me-1"></i>Contact
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="crop-hero-section">
+      <div class="container">
+        <div class="row align-items-center min-vh-100">
+          <div class="col-lg-6">
+            <div class="crop-hero-content" data-aos="fade-up">
+              <div class="hero-badge mb-4">
+                <i class="fas fa-brain me-2"></i>
+                <span>AI-Powered Recommendations</span>
+              </div>
+              <h1 class="crop-hero-title">
+                Get <span class="text-gradient">Smart Crop</span>
+                <br />Recommendations
+              </h1>
+              <p class="crop-hero-description">
+                Leverage advanced AI technology to get personalized crop
+                suggestions based on your soil conditions, local weather, and
+                farming goals. Maximize your yield and profitability with
+                data-driven insights.
+              </p>
+              <div class="hero-features">
+                <div class="feature-item">
+                  <i class="fas fa-check-circle"></i>
+                  <span>Soil Analysis Integration</span>
+                </div>
+                <div class="feature-item">
+                  <i class="fas fa-check-circle"></i>
+                  <span>Weather Pattern Analysis</span>
+                </div>
+                <div class="feature-item">
+                  <i class="fas fa-check-circle"></i>
+                  <span>Market Price Predictions</span>
+                </div>
+              </div>
+              <div class="hero-cta">
+                <a href="#crop-form" class="btn btn-hero-primary">
+                  <i class="fas fa-seedling me-2"></i>
+                  Get Recommendations
+                  <span class="btn-shine"></span>
+                </a>
+                <a href="#how-it-works" class="btn btn-hero-outline">
+                  <i class="fas fa-play-circle me-2"></i>
+                  How It Works
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div
+              class="crop-hero-visual"
+              data-aos="fade-left"
+              data-aos-delay="200"
+            >
+              <div class="hero-image-container">
+                <div class="floating-element element-1">
+                  <i class="fas fa-leaf"></i>
+                  <span>Soil Analysis</span>
+                </div>
+                <div class="floating-element element-2">
+                  <i class="fas fa-cloud-sun"></i>
+                  <span>Weather Data</span>
+                </div>
+                <div class="floating-element element-3">
+                  <i class="fas fa-chart-line"></i>
+                  <span>Market Trends</span>
+                </div>
+                <div class="ai-brain-animation">
+                  <div class="brain-core">
+                    <i class="fas fa-brain"></i>
+                  </div>
+                  <div class="neural-network">
+                    <div class="neuron neuron-1"></div>
+                    <div class="neuron neuron-2"></div>
+                    <div class="neuron neuron-3"></div>
+                    <div class="neuron neuron-4"></div>
+                    <div class="connection connection-1"></div>
+                    <div class="connection connection-2"></div>
+                    <div class="connection connection-3"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="how-it-works-section" id="how-it-works">
+      <div class="container">
+        <div class="text-center mb-5">
+          <div class="section-badge" data-aos="fade-up">
+            <i class="fas fa-cogs me-2"></i>
+            <span>How It Works</span>
+          </div>
+          <h2
+            class="section-title-modern"
+            data-aos="fade-up"
+            data-aos-delay="100"
+          >
+            Smart <span class="text-gradient">AI Process</span>
+          </h2>
+          <p
+            class="section-subtitle-modern"
+            data-aos="fade-up"
+            data-aos-delay="200"
+          >
+            Our advanced AI analyzes multiple data points to provide accurate
+            recommendations
+          </p>
+        </div>
+
+        <div class="row g-4">
+          <div
+            class="col-lg-3 col-md-6"
+            data-aos="fade-up"
+            data-aos-delay="100"
+          >
+            <div class="process-card">
+              <div class="process-number">01</div>
+              <div class="process-icon">
+                <i class="fas fa-map-marker-alt"></i>
+              </div>
+              <h4 class="process-title">Location Analysis</h4>
+              <p class="process-description">
+                We analyze your location's climate, soil type, and environmental
+                conditions using satellite data and weather APIs.
+              </p>
+            </div>
+          </div>
+
+          <div
+            class="col-lg-3 col-md-6"
+            data-aos="fade-up"
+            data-aos-delay="200"
+          >
+            <div class="process-card">
+              <div class="process-number">02</div>
+              <div class="process-icon">
+                <i class="fas fa-flask"></i>
+              </div>
+              <h4 class="process-title">Soil Assessment</h4>
+              <p class="process-description">
+                Advanced soil analysis considering pH levels, nutrient content,
+                and organic matter to determine optimal crop compatibility.
+              </p>
+            </div>
+          </div>
+
+          <div
+            class="col-lg-3 col-md-6"
+            data-aos="fade-up"
+            data-aos-delay="300"
+          >
+            <div class="process-card">
+              <div class="process-number">03</div>
+              <div class="process-icon">
+                <i class="fas fa-brain"></i>
+              </div>
+              <h4 class="process-title">AI Processing</h4>
+              <p class="process-description">
+                Our machine learning algorithms process thousands of data points
+                to generate personalized crop recommendations.
+              </p>
+            </div>
+          </div>
+
+          <div
+            class="col-lg-3 col-md-6"
+            data-aos="fade-up"
+            data-aos-delay="400"
+          >
+            <div class="process-card">
+              <div class="process-number">04</div>
+              <div class="process-icon">
+                <i class="fas fa-seedling"></i>
+              </div>
+              <h4 class="process-title">Smart Recommendations</h4>
+              <p class="process-description">
+                Get detailed crop suggestions with planting schedules, yield
+                predictions, and profitability analysis.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Crop Recommendation Form -->
+    <section class="crop-form-section" id="crop-form">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-10">
+            <div class="crop-form-container" data-aos="fade-up">
+              <div class="form-header text-center mb-5">
+                <h2 class="form-title">Get Your AI Crop Recommendations</h2>
+                <p class="form-subtitle">
+                  Fill in your farm details below and let our AI suggest the
+                  best crops for your conditions
+                </p>
+              </div>
+
+              <!-- Make sure your form has the correct action and method -->
+              <form
+                id="cropRecommendationForm"
+                class="crop-form"
+                method="POST"
+                action="{% url 'main:crop_suggestions' %}"
+              >
+                {% csrf_token %}
+
+                <!-- Enhanced Location & Basic Info Section -->
+                <div class="form-section">
+                  <h4 class="section-title">
+                    <i class="fas fa-map-marker-alt me-2"></i>
+                    Location & Farm Details
+                  </h4>
+                  <div class="row g-3">
+                    <!-- Auto-Location Detection -->
+                    <div class="col-12">
+                      <div class="auto-location-section">
+                        <div class="location-detector">
+                          <button type="button" id="detectLocationBtn" class="btn-detect-location" onclick="detectMyLocation()">
+                            <i class="fas fa-crosshairs me-2"></i>
+                            <span>Detect My Location Automatically</span>
+                            <div class="location-pulse"></div>
+                          </button>
+                          <p class="location-help-text">
+                            <i class="fas fa-info-circle me-1"></i>
+                            Click to automatically fill location details using
+                            GPS
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Manual Location Fields -->
+                    <div class="col-lg-4">
+                      <div class="form-group-crop">
+                        <label class="form-label-crop">
+                          <i class="fas fa-map-marker-alt me-2"></i>
+                          City/Village *
+                        </label>
+                        <input
+                          type="text"
+                          name="location"
+                          id="locationInput"
+                          class="form-control-crop"
+                          placeholder="Enter your city or village name"
+                          required
+                        />
+                      </div>
+                    </div>
+
+                    <div class="col-lg-4">
+                      <div class="form-group-crop">
+                        <label class="form-label-crop">
+                          <i class="fas fa-map me-2"></i>
+                          State/Province *
+                        </label>
+                        <input
+                          type="text"
+                          name="state"
+                          id="stateInput"
+                          class="form-control-crop"
+                          placeholder="e.g., Karnataka, Maharashtra"
+                          required
+                        />
+                      </div>
+                    </div>
+
+                    <div class="col-lg-4">
+                      <div class="form-group-crop">
+                        <label class="form-label-crop">
+                          <i class="fas fa-globe me-2"></i>
+                          Country *
+                        </label>
+                        <select
+                          name="country"
+                          id="countryInput"
+                          class="form-control-crop"
+                          required
+                        >
+                          <option value="">Select Country</option>
+                          <option value="India" selected>🇮🇳 India</option>
+                          <option value="United States">
+                            🇺🇸 United States
+                          </option>
+                          <option value="Canada">🇨🇦 Canada</option>
+                          <option value="Australia">🇦🇺 Australia</option>
+                          <option value="United Kingdom">
+                            🇬🇧 United Kingdom
+                          </option>
+                          <option value="Germany">🇩🇪 Germany</option>
+                          <option value="France">🇫🇷 France</option>
+                          <option value="Brazil">🇧🇷 Brazil</option>
+                          <option value="China">🇨🇳 China</option>
+                          <option value="Japan">🇯🇵 Japan</option>
+                          <option value="South Africa">🇿🇦 South Africa</option>
+                          <option value="Nigeria">🇳🇬 Nigeria</option>
+                          <option value="Kenya">🇰🇪 Kenya</option>
+                          <option value="Bangladesh">🇧🇩 Bangladesh</option>
+                          <option value="Pakistan">🇵🇰 Pakistan</option>
+                          <option value="Sri Lanka">🇱🇰 Sri Lanka</option>
+                          <option value="Nepal">🇳🇵 Nepal</option>
+                          <option value="Other">🌍 Other</option>
+                        </select>
+                      </div>
+                    </div>
+                    <!-- Location Validation Display -->
+                    <div class="col-12" id="locationValidation" style="display: none;">
+                        <div class="location-validation">
+                            <h6><i class="fas fa-map-marked-alt me-2"></i>Location Confirmed</h6>
+                            <p id="locationConfirmText">We'll analyze conditions for this specific location.</p>
+                        </div>
+                    </div>
+                    <!-- Farm Size -->
+                    <div class="col-lg-12">
+                      <div class="form-group-crop">
+                        <label class="form-label-crop">
+                          <i class="fas fa-expand-arrows-alt me-2"></i>
+                          Farm Size (acres)
+                        </label>
+                        <select name="farm_size" class="form-control-crop">
+                          <option value="">Select farm size</option>
+                          <option value="small">Small (1-5 acres)</option>
+                          <option value="medium">Medium (5-25 acres)</option>
+                          <option value="large">Large (25+ acres)</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Updated Soil Information Section in crop_suggestions.html -->
+                <div class="form-section">
+                  <h4 class="section-title">
+                    <i class="fas fa-seedling me-2"></i>
+                    Soil Information
+                  </h4>
+                  <div class="row g-3">
+                    <div class="col-lg-6">
+                      <div class="form-group-crop">
+                        <label class="form-label-crop">
+                          <i class="fas fa-flask me-2"></i>
+                          Soil Type
+                        </label>
+                        <select name="soil_type" class="form-control-crop">
+                          <option value="">Auto-detect from location</option>
+                          <option value="clay">Clay</option>
+                          <option value="sandy">Sandy</option>
+                          <option value="loamy">Loamy</option>
+                          <option value="silt">Silt</option>
+                          <option value="mixed">Mixed</option>
+                          <option value="unknown">Not sure</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group-crop">
+                        <label class="form-label-crop">
+                          <i class="fas fa-tint me-2"></i>
+                          Soil pH Level
+                        </label>
+                        <select name="soil_ph" class="form-control-crop">
+                          <option value="">Auto-detect from location</option>
+                          <option value="acidic">Acidic (< 6.0)</option>
+                          <option value="neutral">Neutral (6.0-7.5)</option>
+                          <option value="alkaline">Alkaline (> 7.5)</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <!-- Advanced Soil Testing Toggle -->
+                    <div class="col-12">
+                      <div class="advanced-toggle-section">
+                        <div
+                          class="toggle-header"
+                          onclick="toggleAdvancedSoil()"
+                        >
+                          <i class="fas fa-microscope me-2"></i>
+                          <span>Have soil test results?</span>
+                          <i
+                            class="fas fa-chevron-down toggle-icon"
+                            id="advancedToggleIcon"
+                          ></i>
+                        </div>
+                        <p class="toggle-subtitle">
+                          Click here if you have detailed soil nutrient analysis
+                        </p>
+                      </div>
+                    </div>
+
+                    <!-- Advanced Soil Fields (Hidden by default) -->
+                    <div
+                      class="col-12"
+                      id="advancedSoilFields"
+                      style="display: none"
+                    >
+                      <div class="advanced-soil-container">
+                        <div class="row g-3">
+                          <div class="col-lg-4">
+                            <div class="form-group-crop">
+                              <label class="form-label-crop">
+                                <i class="fas fa-leaf me-2"></i>
+                                Nitrogen Level (kg/ha)
+                              </label>
+                              <input
+                                type="number"
+                                name="nitrogen"
+                                class="form-control-crop"
+                                placeholder="Auto-calculated"
+                              />
+                            </div>
+                          </div>
+                          <div class="col-lg-4">
+                            <div class="form-group-crop">
+                              <label class="form-label-crop">
+                                <i class="fas fa-fire me-2"></i>
+                                Phosphorus Level (kg/ha)
+                              </label>
+                              <input
+                                type="number"
+                                name="phosphorus"
+                                class="form-control-crop"
+                                placeholder="Auto-calculated"
+                              />
+                            </div>
+                          </div>
+                          <div class="col-lg-4">
+                            <div class="form-group-crop">
+                              <label class="form-label-crop">
+                                <i class="fas fa-gem me-2"></i>
+                                Potassium Level (kg/ha)
+                              </label>
+                              <input
+                                type="number"
+                                name="potassium"
+                                class="form-control-crop"
+                                placeholder="Auto-calculated"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                        <div class="soil-info-note">
+                          <i class="fas fa-info-circle me-2"></i>
+                          <span
+                            >Leave empty for AI-powered estimation based on your
+                            location and soil type</span
+                          >
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Farming Preferences -->
+                <div class="form-section">
+                  <h4 class="section-title">
+                    <i class="fas fa-cogs me-2"></i>
+                    Farming Preferences
+                  </h4>
+                  <div class="row g-3">
+                    <div class="col-lg-6">
+                      <div class="form-group-crop">
+                        <label class="form-label-crop">
+                          <i class="fas fa-calendar me-2"></i>
+                          Preferred Season
+                        </label>
+                        <select name="season" class="form-control-crop">
+                          <option value="">Select season</option>
+                          <option value="kharif">
+                            Kharif (Monsoon: Jun-Oct)
+                          </option>
+                          <option value="rabi">Rabi (Winter: Nov-Apr)</option>
+                          <option value="zaid">Zaid (Summer: Mar-Jun)</option>
+                          <option value="year_round">Year Round</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group-crop">
+                        <label class="form-label-crop">
+                          <i class="fas fa-rupee-sign me-2"></i>
+                          Budget Range (₹)
+                        </label>
+                        <select name="budget" class="form-control-crop">
+                          <option value="">Select budget</option>
+                          <option value="low">Low (₹10,000-50,000)</option>
+                          <option value="medium">
+                            Medium (₹50,000-2,00,000)
+                          </option>
+                          <option value="high">High (₹2,00,000+)</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group-crop">
+                        <label class="form-label-crop">
+                          <i class="fas fa-bullseye me-2"></i>
+                          Primary Goal
+                        </label>
+                        <select name="goal" class="form-control-crop">
+                          <option value="">Select goal</option>
+                          <option value="profit">Maximum Profit</option>
+                          <option value="food_security">Food Security</option>
+                          <option value="sustainability">Sustainability</option>
+                          <option value="export">Export Quality</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group-crop">
+                        <label class="form-label-crop">
+                          <i class="fas fa-tint me-2"></i>
+                          Irrigation Facility
+                        </label>
+                        <select name="irrigation" class="form-control-crop">
+                          <option value="">Select irrigation</option>
+                          <option value="drip">Drip Irrigation</option>
+                          <option value="sprinkler">Sprinkler</option>
+                          <option value="flood">Flood Irrigation</option>
+                          <option value="rainfed">Rain-fed Only</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Additional Information -->
+                <div class="form-section">
+                  <h4 class="section-title">
+                    <i class="fas fa-info-circle me-2"></i>
+                    Additional Information
+                  </h4>
+                  <div class="row g-3">
+                    <div class="col-lg-6">
+                      <div class="form-group-crop">
+                        <label class="form-label-crop">
+                          <i class="fas fa-history me-2"></i>
+                          Previous Crop
+                        </label>
+                        <input
+                          type="text"
+                          name="previous_crop"
+                          class="form-control-crop"
+                          placeholder="e.g., Rice, Wheat, Sugarcane"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group-crop">
+                        <label class="form-label-crop">
+                          <i class="fas fa-road me-2"></i>
+                          Distance to Market (km)
+                        </label>
+                        <select
+                          name="market_distance"
+                          class="form-control-crop"
+                        >
+                          <option value="">Select distance</option>
+                          <option value="near">Near (0-10 km)</option>
+                          <option value="moderate">Moderate (10-50 km)</option>
+                          <option value="far">Far (50+ km)</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-lg-12">
+                      <div class="form-group-crop">
+                        <label class="form-label-crop">
+                          <i class="fas fa-user-graduate me-2"></i>
+                          Farming Experience
+                        </label>
+                        <select name="experience" class="form-control-crop">
+                          <option value="">Select experience</option>
+                          <option value="beginner">Beginner (0-2 years)</option>
+                          <option value="intermediate">
+                            Intermediate (2-10 years)
+                          </option>
+                          <option value="experienced">
+                            Experienced (10+ years)
+                          </option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="form-submit">
+                  <button
+                    type="submit"
+                    class="btn btn-crop-submit"
+                    id="submitButton"
+                  >
+                    <i class="fas fa-brain me-2"></i>
+                    Get AI Recommendations
+                    <span class="btn-shine"></span>
+                  </button>
+                  <p class="submit-note">
+                    <i class="fas fa-info-circle me-1"></i>
+                    Analysis usually takes 10-15 seconds
+                  </p>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Add this right after the form and before the results section -->
+
+    <!-- Python Processing Messages -->
+    {% if messages %}
+    <div class="messages-container">
+      {% for message in messages %}
+      <div
+        class="alert alert-{{ message.tags }} alert-dismissible fade show"
+        role="alert"
+      >
+        {% if message.tags == 'success' %}
+        <i class="fas fa-check-circle me-2"></i>
+        {% elif message.tags == 'error' %}
+        <i class="fas fa-exclamation-circle me-2"></i>
+        {% else %}
+        <i class="fas fa-info-circle me-2"></i>
+        {% endif %} {{ message }}
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="alert"
+        ></button>
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %} {% if error %}
+    <div
+      style="
+        background: #ef4444;
+        color: white;
+        padding: 20px;
+        margin: 20px;
+        border-radius: 10px;
+      "
+    >
+      <h2>❌ ERROR</h2>
+      <p>{{ error }}</p>
+    </div>
+    {% endif %}
+
+    <!-- Loading Animation (Python Processing) -->
+    <style>
+      .processing-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        backdrop-filter: blur(10px);
+        z-index: 9999;
+        display: none;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .processing-overlay.active {
+        display: flex;
+      }
+
+      .processing-content {
+        text-align: center;
+        color: white;
+      }
+
+      .python-loader {
+        font-size: 4rem;
+        color: #10b981;
+        animation: spin 2s linear infinite;
+        margin-bottom: 1rem;
+      }
+
+      @keyframes spin {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+    <script>
+      function toggleAdvancedSoil() {
+        const fields = document.getElementById("advancedSoilFields");
+        const icon = document.getElementById("advancedToggleIcon");
+
+        if (fields.style.display === "none" || fields.style.display === "") {
+          fields.style.display = "block";
+          icon.classList.remove("fa-chevron-down");
+          icon.classList.add("fa-chevron-up");
+        } else {
+          fields.style.display = "none";
+          icon.classList.remove("fa-chevron-up");
+          icon.classList.add("fa-chevron-down");
+        }
+      }
+    </script>
+    <!-- Add this JavaScript for form submission loading -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+          const form = document.getElementById('cropRecommendationForm');
+          const submitButton = document.getElementById('submitButton');
+
+          if (form) {
+              form.addEventListener('submit', function() {
+                  // Show processing state
+                  submitButton.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Processing...';
+                  submitButton.disabled = true;
+
+                  // Create loading overlay
+                  const overlay = document.createElement('div');
+                  overlay.className = 'processing-overlay active';
+                  overlay.innerHTML = `
+                      <div class="processing-content">
+                          <div class="python-loader">
+                              <i class="fab fa-python"></i>
+                          </div>
+                          <h3>AI Processing Your Request</h3>
+                          <p>Analyzing your farm data with advanced algorithms...</p>
+                      </div>
+                  `;
+                  document.body.appendChild(overlay);
+              });
+          }
+
+          // Auto-scroll to results if they exist
+          {% if success and recommendations %}
+              setTimeout(function() {
+                  const resultsSection = document.getElementById('results');
+                  if (resultsSection) {
+                      resultsSection.scrollIntoView({ behavior: 'smooth' });
+                  }
+              }, 500);
+          {% endif %}
+      });
+    </script>
+
+    <!-- Enhanced Results Section -->
+    {% if success %}
+    <section class="results-section-enhanced" id="results">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-12">
+            <!-- Results Header -->
+            <div class="results-header-modern" data-aos="fade-up">
+              <div class="success-badge">
+                <i class="fas fa-check-circle"></i>
+                <span>Analysis Complete</span>
+              </div>
+              <h2 class="results-main-title">
+                <i class="fas fa-brain me-3"></i>
+                AI Crop Recommendations
+              </h2>
+              <p class="results-subtitle">
+                Personalized recommendations based on advanced AI analysis of
+                your farm conditions
+              </p>
+            </div>
+
+            <!-- Location & Weather Info Cards -->
+            <div
+              class="info-cards-grid"
+              data-aos="fade-up"
+              data-aos-delay="100"
+            >
+              <div class="info-card location-card">
+                <div class="card-icon">
+                  <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <div class="card-content">
+                  <h4>Location</h4>
+                  <p>{{ location }}</p>
+                </div>
+              </div>
+
+              <div class="info-card weather-card">
+                <div class="card-icon">
+                  <i class="fas fa-thermometer-half"></i>
+                </div>
+                <div class="card-content">
+                  <h4>Temperature</h4>
+                  <p>{{ temperature }}°C</p>
+                </div>
+              </div>
+
+              <div class="info-card humidity-card">
+                <div class="card-icon">
+                  <i class="fas fa-tint"></i>
+                </div>
+                <div class="card-content">
+                  <h4>Humidity</h4>
+                  <p>{{ humidity }}%</p>
+                </div>
+              </div>
+
+              <div class="info-card time-card">
+                <div class="card-icon">
+                  <i class="fas fa-clock"></i>
+                </div>
+                <div class="card-content">
+                  <h4>Generated</h4>
+                  <p>{{ local_time }}</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Main Recommendations Container -->
+            <div
+              class="recommendations-container-modern"
+              data-aos="fade-up"
+              data-aos-delay="200"
+            >
+              <div class="recommendations-header">
+                <div class="header-icon">
+                  <i class="fas fa-seedling"></i>
+                </div>
+                <h3>Your Personalized Crop Analysis</h3>
+                <div class="ai-badge">
+                  <i class="fas fa-brain me-1"></i>
+                  Powered by AI
+                </div>
+              </div>
+
+              <div class="recommendations-content-modern">
+                <div class="content-wrapper">{{ recommendations|safe }}</div>
+              </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div
+              class="results-actions-modern"
+              data-aos="fade-up"
+              data-aos-delay="300"
+            >
+              <div class="actions-grid">
+                <button class="action-btn print-btn" onclick="window.print()">
+                  <div class="btn-icon">
+                    <i class="fas fa-print"></i>
+                  </div>
+                  <div class="btn-content">
+                    <h5>Print Report</h5>
+                    <p>Save as PDF</p>
+                  </div>
+                </button>
+
+                <a
+                  href="{% url 'main:crop_suggestions' %}"
+                  class="action-btn new-analysis-btn"
+                >
+                  <div class="btn-icon">
+                    <i class="fas fa-plus-circle"></i>
+                  </div>
+                  <div class="btn-content">
+                    <h5>New Analysis</h5>
+                    <p>Different location</p>
+                  </div>
+                </a>
+
+                <a
+                  href="{% url 'main:contact' %}"
+                  class="action-btn expert-btn"
+                >
+                  <div class="btn-icon">
+                    <i class="fas fa-user-tie"></i>
+                  </div>
+                  <div class="btn-content">
+                    <h5>Contact Expert</h5>
+                    <p>Get personal advice</p>
+                  </div>
+                </a>
+
+                <button class="action-btn share-btn" onclick="shareResults()">
+                  <div class="btn-icon">
+                    <i class="fas fa-share-alt"></i>
+                  </div>
+                  <div class="btn-content">
+                    <h5>Share Results</h5>
+                    <p>With other farmers</p>
+                  </div>
+                </button>
+              </div>
+            </div>
+
+            <!-- Download Options -->
+            <div
+              class="download-options"
+              data-aos="fade-up"
+              data-aos-delay="400"
+            >
+              <h4><i class="fas fa-download me-2"></i>Download Your Report</h4>
+              <div class="download-buttons">
+                <button class="download-btn pdf-btn" onclick="downloadPDF()">
+                  <i class="fas fa-file-pdf me-2"></i>
+                  PDF Report
+                </button>
+                <button class="download-btn word-btn" onclick="downloadWord()">
+                  <i class="fas fa-file-word me-2"></i>
+                  Word Document
+                </button>
+                <button
+                  class="download-btn excel-btn"
+                  onclick="downloadExcel()"
+                >
+                  <i class="fas fa-file-excel me-2"></i>
+                  Excel Sheet
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Success Animation Overlay -->
+    <div class="success-overlay" id="successOverlay">
+      <div class="success-animation">
+        <div class="checkmark-circle">
+          <div class="checkmark"></div>
+        </div>
+        <h3>Analysis Complete!</h3>
+        <p>Your crop recommendations are ready</p>
+      </div>
+    </div>
+    {% endif %}
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+      <div class="loading-content">
+        <div class="ai-loader">
+          <div class="brain-loader">
+            <i class="fas fa-brain"></i>
+          </div>
+          <div class="loading-dots">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+          </div>
+        </div>
+        <h3 class="loading-title">Analyzing Your Farm Data</h3>
+        <p class="loading-text" id="loadingText">
+          Processing location and weather data...
+        </p>
+      </div>
+    </div>
+
+    <!-- Enhanced Footer -->
+    <footer class="footer-modern">
+      <div class="container">
+        <div class="footer-content">
+          <div class="row">
+            <!-- Brand Section -->
+            <div class="col-lg-4 col-md-6 mb-4">
+              <div class="footer-brand-modern">
+                <i class="fas fa-seedling me-2"></i>
+                <span>Kissan Connect</span>
+              </div>
+              <p class="footer-description-modern">
+                Empowering farmers with cutting-edge AI technology for smarter,
+                more profitable agricultural decisions.
+              </p>
+              <div class="social-links-modern">
+                <a href="#" class="social-link-modern">
+                  <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="#" class="social-link-modern">
+                  <i class="fab fa-twitter"></i>
+                </a>
+                <a href="#" class="social-link-modern">
+                  <i class="fab fa-instagram"></i>
+                </a>
+                <a href="#" class="social-link-modern">
+                  <i class="fab fa-linkedin-in"></i>
+                </a>
+              </div>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="col-lg-2 col-md-6 mb-4">
+              <h6 class="footer-title-modern">Services</h6>
+              <ul class="footer-links-modern">
+                <li>
+                  <a href="{% url 'main:crop_suggestions' %}"
+                    >Crop Suggestions</a
+                  >
+                </li>
+                <li><a href="#">Weather Alerts</a></li>
+                <li><a href="#">Disease Detection</a></li>
+                <li><a href="#">Marketplace</a></li>
+              </ul>
+            </div>
+
+            <!-- Company -->
+            <div class="col-lg-2 col-md-6 mb-4">
+              <h6 class="footer-title-modern">Company</h6>
+              <ul class="footer-links-modern">
+                <li><a href="{% url 'main:about' %}">About Us</a></li>
+                <li><a href="#">Careers</a></li>
+                <li><a href="#">Press</a></li>
+                <li><a href="#">Blog</a></li>
+              </ul>
+            </div>
+
+            <!-- Support -->
+            <div class="col-lg-2 col-md-6 mb-4">
+              <h6 class="footer-title-modern">Support</h6>
+              <ul class="footer-links-modern">
+                <li><a href="#">Help Center</a></li>
+                <li><a href="#">Documentation</a></li>
+                <li><a href="#">Community</a></li>
+                <li><a href="{% url 'main:contact' %}">Contact</a></li>
+              </ul>
+            </div>
+
+            <!-- Contact -->
+            <div class="col-lg-2 col-md-6 mb-4">
+              <h6 class="footer-title-modern">Contact</h6>
+              <div class="contact-info-modern">
+                <div class="contact-item-modern">
+                  <i class="fas fa-envelope"></i>
+                  <span>info@kissanconnect.com</span>
+                </div>
+                <div class="contact-item-modern">
+                  <i class="fas fa-phone"></i>
+                  <span>+91 98765 43210</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-bottom-modern">
+          <div class="row align-items-center">
+            <div class="col-md-6">
+              <p>&copy; 2024 Kissan Connect. All rights reserved.</p>
+            </div>
+            <div class="col-md-6 text-md-end">
+              <a href="#" class="footer-link-modern">Privacy Policy</a>
+              <a href="#" class="footer-link-modern">Terms of Service</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+    <script src="{% static 'js/crop-suggestions.js' %}"></script>
+  </body>
+</html>
+
+<!-- Enhanced Action Buttons Section -->
+{% if success and recommendations %}
+<section class="action-buttons-section">
+    <div class="container">
+        <div class="row justify-content-center mb-4">
+            <div class="col-12">
+                <div class="action-buttons-grid">
+                    <!-- Print Report Button -->
+                    <div class="action-card print-card">
+                        <button class="action-btn print-btn" onclick="printReport()">
+                            <div class="action-icon">
+                                <i class="fas fa-print"></i>
+                            </div>
+                            <div class="action-content">
+                                <h3>Print Report</h3>
+                                <p>Save as PDF</p>
+                            </div>
+                        </button>
+                    </div>
+
+                    <!-- New Analysis Button -->
+                    <div class="action-card analysis-card">
+                        <button class="action-btn analysis-btn" onclick="newAnalysis()">
+                            <div class="action-icon">
+                                <i class="fas fa-plus"></i>
+                            </div>
+                            <div class="action-content">
+                                <h3>New Analysis</h3>
+                                <p>Different location</p>
+                            </div>
+                        </button>
+                    </div>
+
+                    <!-- Contact Expert Button -->
+                    <div class="action-card expert-card">
+                        <button class="action-btn expert-btn" onclick="contactExpert()">
+                            <div class="action-icon">
+                                <i class="fas fa-user-tie"></i>
+                            </div>
+                            <div class="action-content">
+                                <h3>Contact Expert</h3>
+                                <p>Get personal advice</p>
+                            </div>
+                        </button>
+                    </div>
+
+                    <!-- Share Results Button -->
+                    <div class="action-card share-card">
+                        <button class="action-btn share-btn" onclick="shareResults()">
+                            <div class="action-icon">
+                                <i class="fas fa-share-alt"></i>
+                            </div>
+                            <div class="action-content">
+                                <h3>Share Results</h3>
+                                <p>With other farmers</p>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Download Report Section -->
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="download-section">
+                    <h3 class="download-title">
+                        <i class="fas fa-download me-2"></i>
+                        Download Your Report
+                    </h3>
+                    <div class="download-buttons">
+                        <button class="download-btn pdf-btn" onclick="downloadReport('pdf')">
+                            <i class="fas fa-file-pdf me-2"></i>
+                            PDF Report
+                        </button>
+                        <button class="download-btn word-btn" onclick="downloadReport('docx')">
+                            <i class="fas fa-file-word me-2"></i>
+                            Word Document
+                        </button>
+                        <button class="download-btn excel-btn" onclick="downloadReport('xlsx')">
+                            <i class="fas fa-file-excel me-2"></i>
+                            Excel Sheet
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Expert Contact Modal -->
+<div class="modal fade" id="expertModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">
+                    <i class="fas fa-user-tie me-2"></i>
+                    Contact Agricultural Expert
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form id="expertContactForm">
+                    <div class="mb-3">
+                        <label class="form-label">Your Name *</label>
+                        <input type="text" class="form-control" name="user_name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Email Address *</label>
+                        <input type="email" class="form-control" name="user_email" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Phone Number</label>
+                        <input type="tel" class="form-control" name="user_phone">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Your Question/Message</label>
+                        <textarea class="form-control" name="message" rows="3" placeholder="Describe your farming challenge or question..."></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" onclick="submitExpertContact()">
+                    <i class="fas fa-paper-plane me-2"></i>
+                    Send Request
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Share Modal -->
+<div class="modal fade" id="shareModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">
+                    <i class="fas fa-share-alt me-2"></i>
+                    Share Your Results
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="share-options">
+                    <button class="share-option-btn" onclick="generateShareLink()">
+                        <i class="fas fa-link me-2"></i>
+                        Generate Shareable Link
+                    </button>
+                    <div id="shareLink" class="share-link-container" style="display: none;">
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="generatedLink" readonly>
+                            <button class="btn btn-outline-primary" onclick="copyShareLink()">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}

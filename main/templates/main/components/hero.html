@@ -1,0 +1,71 @@
+{% load static %}
+
+<!DOCTYPE html>
+<section class="hero-section">
+    <div class="hero-container">
+        <div class="hero-content">
+            <h1 class="hero-title">🌾 Welcome to Kissan Connect 🌾</h1>
+            <p class="hero-subtitle">Empowering farmers with AI-driven solutions for a sustainable future</p>
+            <a href="{% url 'main:services' %}" class="btn hero-btn">Explore Our Services</a>
+        </div>
+        <div class="hero-image">
+            <img src="{% static 'images/hero/hero-image.jpg' %}" alt="Hero Image" class="img-fluid">
+        </div>
+    </div>
+</section>
+
+<style>
+.hero-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 0;
+    background: linear-gradient(135deg, rgba(45, 80, 22, 0.7), rgba(74, 124, 89, 0.5)), url('{% static "images/hero/hero-background.jpg" %}');
+    background-size: cover;
+    background-position: center;
+    color: white;
+}
+
+.hero-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.hero-title {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.hero-subtitle {
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+}
+
+.hero-btn {
+    background: #ff6b35;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+}
+
+.hero-btn:hover {
+    background: #ff5722;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(255, 107, 53, 0.3);
+}
+
+.hero-image {
+    margin-top: 30px;
+}
+
+.hero-image img {
+    max-width: 100%;
+    border-radius: 15px;
+}
+</style>
