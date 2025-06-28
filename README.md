@@ -1,7 +1,7 @@
 <h1 align="center">🌾 KissanConnect</h1>
 <p align="center"> 
   <img src="https://img.shields.io/badge/status-in%20development-yellow?style=flat-square" /> 
-  <img src="https://img.shields.io/badge/Built%20With-Flask%20%26%20JavaScript-green?style=flat-square" /> 
+  <img src="https://img.shields.io/badge/Built%20With-dJango%20%26%20JavaScript-green?style=flat-square" /> 
   <img src="https://img.shields.io/badge/Powered%20By-AI%20%26%20Weather%20API-blue?style=flat-square" /> 
 </p> 
 <p align="center"> 
@@ -12,7 +12,7 @@
   KissanConnect empowers farmers with AI-based crop suggestions, real-time weather insights, and a direct-to-customer marketplace — all in one platform.
 </p> 
 <p align="center"> 
-  <a href="https://kissanconnect.yourdomain.com" target="_blank"> <img src="https://img.shields.io/badge/Launch%20App-Click%20Here-critical?style=for-the-badge&logo=flask" /> </a> &nbsp; 
+  <a href="https://kissanconnect.yourdomain.com" target="_blank"> <img src="https://img.shields.io/badge/Launch%20App-Click%20Here-critical?style=for-the-badge&logo=dJango" /> </a> &nbsp; 
   <a href="https://github.com/Venkatdanush/Kissan_Connect" target="_blank"> <img src="https://img.shields.io/badge/GitHub-Repo-333?style=for-the-badge&logo=github" /> </a> 
 </p>
 
