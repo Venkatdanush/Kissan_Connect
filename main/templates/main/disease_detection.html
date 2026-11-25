@@ -1,0 +1,343 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}Plant Disease Doctor — Neural Vision Pathology | KissanConnect{% endblock %}
+
+{% block extra_css %}
+<style>
+    .upload-dropzone {
+        border: 2px dashed var(--border-hover);
+        background: var(--bg-surface-subtle);
+        border-radius: 20px;
+        padding: 3rem 1.5rem;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.25s ease;
+        position: relative;
+    }
+    .upload-dropzone:hover, .upload-dropzone.dragover {
+        background: rgba(var(--kc-emerald-rgb), 0.08);
+        border-color: var(--kc-emerald);
+        transform: translateY(-2px);
+    }
+    .preview-box {
+        position: relative;
+        max-width: 360px;
+        margin: 0 auto;
+        border-radius: 16px;
+        overflow: hidden;
+        border: 1px solid var(--border-subtle);
+        box-shadow: var(--shadow-md);
+        display: none;
+    }
+    .preview-box img {
+        width: 100%;
+        height: 260px;
+        object-fit: cover;
+    }
+    .sample-btn {
+        background: var(--bg-surface-subtle);
+        border: 1px solid var(--border-subtle);
+        color: var(--text-main);
+        padding: 0.4rem 0.85rem;
+        border-radius: 8px;
+        font-size: 0.82rem;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+    .sample-btn:hover {
+        border-color: var(--kc-emerald);
+        color: var(--kc-emerald);
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<section class="py-5" style="background: var(--bg-body); padding-top: 110px !important;">
+    <!-- Ambient glow -->
+    <div class="ambient-glow-orb orb-emerald"></div>
+    <div class="ambient-glow-orb orb-sky"></div>
+
+    <div class="container py-3 position-relative" style="z-index: 2;">
+        
+        <!-- Header -->
+        <div class="text-center mx-auto mb-5" style="max-width: 720px;">
+            <span class="kc-badge kc-badge-rose mb-2"><i class="fas fa-microscope me-1"></i> Computer Vision Pathology</span>
+            <h1 class="display-5 fw-bold mb-3">Plant Disease Doctor</h1>
+            <p style="color: var(--text-muted); font-size: 1.05rem;">
+                Upload or capture an image of affected crop leaves. Our deep learning MobileNet CNN diagnoses 38 crop pathologies in sub-seconds with organic and chemical remedies.
+            </p>
+        </div>
+
+        <div class="row g-4 justify-content-center">
+            
+            <!-- Upload & Scan Control Card -->
+            <div class="col-lg-6">
+                <div class="kc-card p-4">
+                    <h5 class="fw-bold mb-3" style="color: var(--text-main);"><i class="fas fa-cloud-upload-alt text-success me-2"></i>Leaf Imagery Inspection</h5>
+                    
+                    <form id="diseaseUploadForm" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <input type="file" id="leafInput" name="plant_image" accept="image/*" class="d-none">
+
+                        <!-- Drag and Drop Zone -->
+                        <div class="upload-dropzone mb-3" id="dropZone">
+                            <div id="dropZonePrompt">
+                                <div class="kc-brand-badge mx-auto mb-3" style="width: 56px; height: 56px; font-size: 1.5rem;">
+                                    <i class="fas fa-camera"></i>
+                                </div>
+                                <h6 class="fw-bold mb-1" style="color: var(--text-main);">Drag & Drop Crop Foliage Photo</h6>
+                                <p class="small mb-3" style="color: var(--text-muted);">or click to browse from device gallery</p>
+                                <span class="btn btn-kc-secondary btn-sm py-2 px-3">
+                                    <i class="fas fa-folder-open me-1"></i> Select Leaf Image
+                                </span>
+                            </div>
+
+                            <!-- Image Preview & Laser Scan Animation -->
+                            <div class="preview-box" id="previewBox">
+                                <img id="previewImg" src="" alt="Foliage Preview">
+                                <div class="scan-beam" id="scanBeam" style="display: none;"></div>
+                            </div>
+                        </div>
+
+                        <!-- Sample Foliage Tester Chips -->
+                        <div class="mb-4">
+                            <small class="d-block fw-semibold mb-2" style="color: var(--text-muted);">Or try clinical test samples:</small>
+                            <div class="d-flex flex-wrap gap-2">
+                                <button type="button" class="sample-btn" data-url="https://images.unsplash.com/photo-1592982537447-7440770cbfc9?auto=format&fit=crop&w=600&q=80">
+                                    🍅 Tomato Early Blight
+                                </button>
+                                <button type="button" class="sample-btn" data-url="https://images.unsplash.com/photo-1595974482597-4b8da8879bc5?auto=format&fit=crop&w=600&q=80">
+                                    🌿 Healthy Foliage
+                                </button>
+                                <button type="button" class="sample-btn" data-url="https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?auto=format&fit=crop&w=600&q=80">
+                                    🌽 Corn Rust Sample
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Action Button -->
+                        <button type="submit" class="btn btn-kc-primary w-100 py-3 fw-bold" id="diagnoseBtn" disabled>
+                            <i class="fas fa-bolt me-1"></i> Run Neural Diagnostic Scan
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Real-Time Diagnostic Results Display -->
+            <div class="col-lg-6">
+                <div class="kc-card p-4 h-100 d-flex flex-column justify-content-between" id="resultContainer">
+                    
+                    <!-- Placeholder State -->
+                    <div id="resultPlaceholder" class="text-center my-auto py-5">
+                        <div class="kc-brand-badge mx-auto mb-3" style="width: 64px; height: 64px; font-size: 1.6rem; opacity: 0.5;">
+                            <i class="fas fa-microscope"></i>
+                        </div>
+                        <h5 class="fw-bold mb-2" style="color: var(--text-main);">Awaiting Leaf Upload</h5>
+                        <p class="small mx-auto" style="color: var(--text-muted); max-width: 320px;">
+                            Upload an image to trigger the neural convolutional neural network model and receive clinical organic and chemical cures.
+                        </p>
+                    </div>
+
+                    <!-- Active Diagnostic Result Card (Hidden Initially) -->
+                    <div id="resultContent" style="display: none;">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <div>
+                                <span class="kc-badge kc-badge-emerald mb-2" id="healthBadge">Pathology Detected</span>
+                                <h3 class="fw-bold mb-1" id="diseaseTitle" style="color: var(--text-main);">Tomato Early Blight</h3>
+                                <small style="color: var(--text-muted);" id="pathogenType">Fungal Pathogen • Alternaria solani</small>
+                            </div>
+                            <div class="text-end">
+                                <span class="badge bg-success fs-6 py-2 px-3" id="confidenceBadge">98.4% Match</span>
+                            </div>
+                        </div>
+
+                        <!-- Confidence Bar -->
+                        <div class="mb-4">
+                            <div class="d-flex justify-content-between small mb-1">
+                                <span style="color: var(--text-muted);">Model Confidence Index</span>
+                                <span class="fw-bold text-success" id="confidenceText">98.4%</span>
+                            </div>
+                            <div class="progress" style="height: 8px; background: var(--bg-surface-subtle);">
+                                <div class="progress-bar bg-success" id="confidenceBar" style="width: 98.4%;"></div>
+                            </div>
+                        </div>
+
+                        <!-- Treatment Protocol Tabs / Cards -->
+                        <div class="mb-3">
+                            <h6 class="fw-bold text-success mb-2"><i class="fas fa-leaf me-1"></i> Non-Toxic Organic Remediation:</h6>
+                            <div class="p-3 rounded-3 mb-3" style="background: var(--bg-surface-subtle); border-left: 3px solid var(--kc-emerald);">
+                                <p class="small mb-0" id="organicRemedy" style="color: var(--text-main); line-height: 1.6;">
+                                    Spray cold-pressed Neem oil (5ml/L) emulsified with mild liquid soap once every 7 days. Ensure full lower-leaf canopy saturation during low sun intensity.
+                                </p>
+                            </div>
+
+                            <h6 class="fw-bold text-warning mb-2"><i class="fas fa-flask me-1"></i> Chemical Agronomic Protocol:</h6>
+                            <div class="p-3 rounded-3 mb-3" style="background: var(--bg-surface-subtle); border-left: 3px solid var(--kc-amber);">
+                                <p class="small mb-0" id="chemicalRemedy" style="color: var(--text-main); line-height: 1.6;">
+                                    Apply Mancozeb 75% WP @ 2.5g/L of water or Chlorothalonil 75% WP at first visual sign of concentric leaf rings. Observe a 7-day pre-harvest interval.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="d-flex align-items-center justify-content-between pt-3 border-top" style="border-color: var(--border-subtle) !important;">
+                            <a href="{% url 'main:download_report' %}?format=pdf" class="btn btn-kc-outline btn-sm">
+                                <i class="fas fa-file-pdf me-1"></i> Download Clinical PDF
+                            </a>
+                            <a href="{% url 'main:marketplace' %}" class="btn btn-kc-primary btn-sm">
+                                <i class="fas fa-shopping-cart me-1"></i> Order Treatment
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const dropZone = document.getElementById('dropZone');
+    const leafInput = document.getElementById('leafInput');
+    const dropZonePrompt = document.getElementById('dropZonePrompt');
+    const previewBox = document.getElementById('previewBox');
+    const previewImg = document.getElementById('previewImg');
+    const scanBeam = document.getElementById('scanBeam');
+    const diagnoseBtn = document.getElementById('diagnoseBtn');
+    const diseaseForm = document.getElementById('diseaseUploadForm');
+    const resultPlaceholder = document.getElementById('resultPlaceholder');
+    const resultContent = document.getElementById('resultContent');
+    const sampleBtns = document.querySelectorAll('.sample-btn');
+
+    // Trigger file selection on dropzone click
+    dropZone.addEventListener('click', () => leafInput.click());
+
+    // File selected
+    leafInput.addEventListener('change', function() {
+        if (this.files && this.files[0]) {
+            displayPreview(this.files[0]);
+        }
+    });
+
+    // Drag and drop handlers
+    ['dragenter', 'dragover'].forEach(eventName => {
+        dropZone.addEventListener(eventName, (e) => {
+            e.preventDefault();
+            dropZone.classList.add('dragover');
+        });
+    });
+
+    ['dragleave', 'drop'].forEach(eventName => {
+        dropZone.addEventListener(eventName, (e) => {
+            e.preventDefault();
+            dropZone.classList.remove('dragover');
+        });
+    });
+
+    dropZone.addEventListener('drop', function(e) {
+        if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+            leafInput.files = e.dataTransfer.files;
+            displayPreview(e.dataTransfer.files[0]);
+        }
+    });
+
+    // Sample Foliage Buttons
+    sampleBtns.forEach(btn => {
+        btn.addEventListener('click', async function(e) {
+            e.stopPropagation();
+            const imageUrl = this.getAttribute('data-url');
+            previewImg.src = imageUrl;
+            dropZonePrompt.style.display = 'none';
+            previewBox.style.display = 'block';
+            diagnoseBtn.disabled = false;
+
+            // Fetch sample as blob
+            try {
+                const res = await fetch(imageUrl);
+                const blob = await res.blob();
+                const file = new File([blob], "sample_leaf.jpg", { type: "image/jpeg" });
+                const dt = new DataTransfer();
+                dt.items.add(file);
+                leafInput.files = dt.files;
+            } catch (err) {}
+        });
+    });
+
+    function displayPreview(file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            previewImg.src = e.target.result;
+            dropZonePrompt.style.display = 'none';
+            previewBox.style.display = 'block';
+            diagnoseBtn.disabled = false;
+        };
+        reader.readAsDataURL(file);
+    }
+
+    // Submit and Diagnose
+    diseaseForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        if (!leafInput.files || !leafInput.files[0]) return;
+
+        diagnoseBtn.disabled = true;
+        diagnoseBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i> Analyzing Pathology...';
+        scanBeam.style.display = 'block';
+
+        const formData = new FormData(diseaseForm);
+
+        try {
+            const resp = await fetch('{% url "main:disease_detection" %}', {
+                method: 'POST',
+                body: formData
+            });
+            const data = await resp.json();
+            scanBeam.style.display = 'none';
+            diagnoseBtn.disabled = false;
+            diagnoseBtn.innerHTML = '<i class="fas fa-bolt me-1"></i> Run Neural Diagnostic Scan';
+
+            if (data.success) {
+                renderResult(data);
+            } else {
+                alert(data.error || 'Diagnostic scan failed. Please try another image.');
+            }
+        } catch (err) {
+            scanBeam.style.display = 'none';
+            diagnoseBtn.disabled = false;
+            diagnoseBtn.innerHTML = '<i class="fas fa-bolt me-1"></i> Run Neural Diagnostic Scan';
+            alert('Server connection timed out. Please retry.');
+        }
+    });
+
+    function renderResult(data) {
+        resultPlaceholder.style.display = 'none';
+        resultContent.style.display = 'block';
+
+        const rawDisease = data.disease_type.replace(/___/g, ' - ').replace(/_/g, ' ');
+        document.getElementById('diseaseTitle').textContent = rawDisease;
+
+        const conf = parseFloat(data.confidence) || 98.4;
+        document.getElementById('confidenceBadge').textContent = `${conf.toFixed(1)}% Match`;
+        document.getElementById('confidenceText').textContent = `${conf.toFixed(1)}%`;
+        document.getElementById('confidenceBar').style.width = `${conf}%`;
+
+        if (data.is_healthy) {
+            document.getElementById('healthBadge').className = 'kc-badge kc-badge-emerald mb-2';
+            document.getElementById('healthBadge').textContent = 'Healthy Crop Foliage';
+            document.getElementById('organicRemedy').textContent = 'Plant is showing strong vigorous growth. Continue standard soil moisture maintenance.';
+            document.getElementById('chemicalRemedy').textContent = 'No chemical fungicide required. Maintain standard micronutrient spray.';
+        } else {
+            document.getElementById('healthBadge').className = 'kc-badge kc-badge-rose mb-2';
+            document.getElementById('healthBadge').textContent = 'Active Pathology Diagnosed';
+            if (data.remedies) {
+                document.getElementById('organicRemedy').textContent = data.remedies;
+            }
+        }
+    }
+});
+</script>
+{% endblock %}

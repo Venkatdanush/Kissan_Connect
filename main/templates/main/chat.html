@@ -1,0 +1,383 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}AI Agronomist Workstation — KissanConnect{% endblock %}
+
+{% block extra_css %}
+<style>
+    .chat-container {
+        height: calc(100vh - 170px);
+        min-height: 580px;
+        display: flex;
+        flex-direction: column;
+    }
+    .chat-messages {
+        flex: 1;
+        overflow-y: auto;
+        padding: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+    }
+    .chat-bubble {
+        max-width: 82%;
+        padding: 1.1rem 1.35rem;
+        border-radius: 16px;
+        line-height: 1.6;
+        font-size: 0.95rem;
+        position: relative;
+    }
+    .chat-bubble-user {
+        align-self: flex-end;
+        background: linear-gradient(135deg, var(--kc-emerald), var(--kc-emerald-dark));
+        color: #ffffff;
+        border-bottom-right-radius: 4px;
+        box-shadow: 0 4px 14px rgba(16, 185, 129, 0.25);
+    }
+    .chat-bubble-ai {
+        align-self: flex-start;
+        background: var(--bg-surface-elevated);
+        border: 1px solid var(--border-subtle);
+        color: var(--text-main);
+        border-bottom-left-radius: 4px;
+        box-shadow: var(--shadow-sm);
+    }
+    .chat-bubble-ai strong {
+        color: var(--kc-emerald);
+    }
+    .chat-bubble-ai ul, .chat-bubble-ai ol {
+        margin-bottom: 0.5rem;
+        padding-left: 1.25rem;
+    }
+    .prompt-chip {
+        background: var(--bg-surface-subtle);
+        border: 1px solid var(--border-subtle);
+        color: var(--text-main);
+        padding: 0.45rem 0.9rem;
+        border-radius: 9999px;
+        font-size: 0.85rem;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        white-space: nowrap;
+    }
+    .prompt-chip:hover {
+        background: rgba(var(--kc-emerald-rgb), 0.12);
+        border-color: var(--kc-emerald);
+        color: var(--kc-emerald);
+    }
+    .typing-dot {
+        width: 8px;
+        height: 8px;
+        background: var(--kc-emerald);
+        border-radius: 50%;
+        display: inline-block;
+        animation: typingBlink 1.4s infinite both;
+    }
+    .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+    .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes typingBlink {
+        0%, 80%, 100% { opacity: 0.2; transform: scale(0.8); }
+        40% { opacity: 1; transform: scale(1.1); }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<section class="py-4" style="background: var(--bg-body); padding-top: 95px !important;">
+    <div class="container-fluid px-lg-5">
+        <div class="row g-3">
+            
+            <!-- Left Info & Capability Sidebar -->
+            <div class="col-lg-3 d-none d-lg-block">
+                <div class="kc-card p-3 h-100 d-flex flex-column justify-content-between">
+                    <div>
+                        <div class="d-flex align-items-center gap-2 mb-3">
+                            <span class="kc-brand-badge">
+                                <i class="fas fa-robot"></i>
+                            </span>
+                            <div>
+                                <h6 class="fw-bold mb-0" style="color: var(--text-main);">AI Agronomist</h6>
+                                <small style="color: var(--text-muted);">Conversational Engine</small>
+                            </div>
+                        </div>
+
+                        <!-- Engine Status Badge -->
+                        <div class="p-3 rounded-3 mb-3" style="background: var(--bg-surface-subtle); border: 1px solid var(--border-subtle);">
+                            <div class="d-flex justify-content-between align-items-center mb-1">
+                                <small class="fw-semibold" style="color: var(--text-muted);">Active LLM Core:</small>
+                                <span class="badge bg-success bg-opacity-20 text-success"><i class="fas fa-bolt me-1"></i> Groq LPU</span>
+                            </div>
+                            <div class="small fw-bold" style="color: var(--text-main);">openai/gpt-oss-20b</div>
+                            <small class="text-muted d-block mt-1" style="font-size: 0.75rem;">Failover: Google Gemini 3.5 Flash</small>
+                        </div>
+
+                        <!-- Capability Highlights -->
+                        <h6 class="small fw-bold text-uppercase mb-2" style="color: var(--text-muted); letter-spacing: 0.05em;">Agronomic Skills</h6>
+                        <ul class="list-unstyled small d-flex flex-column gap-2" style="color: var(--text-muted);">
+                            <li><i class="fas fa-check text-success me-2"></i> Organic Pest Control Formulations</li>
+                            <li><i class="fas fa-check text-success me-2"></i> N-P-K Soil Fertilizer Scheduling</li>
+                            <li><i class="fas fa-check text-success me-2"></i> Weather & Humidity Spray Advisories</li>
+                            <li><i class="fas fa-check text-success me-2"></i> Central & State Mandi MSP Rates</li>
+                            <li><i class="fas fa-check text-success me-2"></i> Strict Input-Language Preservation</li>
+                        </ul>
+                    </div>
+
+                    <div class="p-3 rounded-3" style="background: rgba(16,185,129,0.08); border: 1px solid rgba(16,185,129,0.2);">
+                        <small class="d-block text-success fw-bold mb-1"><i class="fas fa-shield-alt me-1"></i> Agronomist Verified</small>
+                        <small style="color: var(--text-muted); font-size: 0.8rem;">Advisory answers are cross-verified with ICAR guidelines and regional agronomy databases.</small>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Interactive Chat Workstation -->
+            <div class="col-lg-9">
+                <div class="kc-card p-0 chat-container shadow-sm overflow-hidden" style="border-radius: 18px;">
+                    
+                    <!-- Chat Header Bar -->
+                    <div class="p-3 d-flex justify-content-between align-items-center border-bottom" style="background: var(--bg-surface-subtle); border-color: var(--border-subtle) !important;">
+                        <div class="d-flex align-items-center gap-2">
+                            <span class="pulse-dot"></span>
+                            <span class="fw-bold" style="color: var(--text-main); font-size: 0.95rem;">Agronomist Session</span>
+                            <span class="kc-badge kc-badge-emerald py-1 px-2" style="font-size: 0.72rem;">Online</span>
+                        </div>
+                        <button type="button" class="btn btn-sm btn-kc-secondary py-1 px-3" id="clearChatBtn">
+                            <i class="fas fa-trash-alt me-1"></i> Clear Chat
+                        </button>
+                    </div>
+
+                    <!-- Scrollable Messages Window -->
+                    <div class="chat-messages" id="chatMessages">
+                        <!-- Initial Bot Welcome Message -->
+                        <div class="chat-bubble chat-bubble-ai">
+                            <div class="d-flex align-items-center gap-2 mb-2">
+                                <span class="badge bg-success bg-opacity-20 text-success p-1 rounded-circle"><i class="fas fa-seedling"></i></span>
+                                <span class="fw-bold text-success small">Kissan Assistant</span>
+                                <small class="text-muted ms-auto" style="font-size: 0.75rem;">Just now</small>
+                            </div>
+                            <p class="mb-2">
+                                Hello! I am your <strong>AI Farm Agronomist</strong>, powered by Groq LPU hardware and agricultural heuristics.
+                            </p>
+                            <p class="mb-0">
+                                How can I assist your crop operations today? You can ask me about soil management, pest & disease remedies, fertilizer dosing, or weather-dependent spraying schedules.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Suggested Prompt Chips Carousel -->
+                    <div class="px-3 py-2 border-top d-flex gap-2 overflow-x-auto" style="background: var(--bg-surface); border-color: var(--border-subtle) !important;">
+                        <span class="prompt-chip" data-prompt="How to control aphids and whiteflies organically in cotton?">🌱 Organic pest control for cotton</span>
+                        <span class="prompt-chip" data-prompt="What is the ideal N-P-K fertilizer schedule for Wheat during the vegetative stage?">🌾 Wheat N-P-K fertilizer schedule</span>
+                        <span class="prompt-chip" data-prompt="At what humidity and temperature should I avoid spraying pesticides?">🌦️ Weather spraying window</span>
+                        <span class="prompt-chip" data-prompt="What is the current Central Government MSP benchmark for Mustard and Chana?">💰 Check Mustard & Chana MSP</span>
+                    </div>
+
+                    <!-- Floating User Input Area -->
+                    <div class="p-3 border-top" style="background: var(--bg-surface-elevated); border-color: var(--border-subtle) !important;">
+                        <form id="chatForm" class="d-flex align-items-center gap-2">
+                            <input type="text" id="chatInput" class="form-control kc-input py-3" 
+                                   placeholder="Ask anything about your crops, soil, pests, or market prices..." autocomplete="off" required>
+                            
+                            <button type="button" class="btn btn-kc-secondary py-3 px-3" id="voiceInputBtn" title="Speak message">
+                                <i class="fas fa-microphone"></i>
+                            </button>
+
+                            <button type="submit" class="btn btn-kc-primary py-3 px-4" id="sendBtn">
+                                <i class="fas fa-paper-plane me-1"></i> <span class="d-none d-sm-inline">Send</span>
+                            </button>
+                        </form>
+                        <small class="d-block text-center mt-2" style="color: var(--text-muted); font-size: 0.75rem;">
+                            Groq LPU (GPT-OSS-20B) accelerates response delivery. Always follow local agricultural extension safety standards.
+                        </small>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const chatMessages = document.getElementById('chatMessages');
+    const chatForm = document.getElementById('chatForm');
+    const chatInput = document.getElementById('chatInput');
+    const sendBtn = document.getElementById('sendBtn');
+    const clearChatBtn = document.getElementById('clearChatBtn');
+    const promptChips = document.querySelectorAll('.prompt-chip');
+    const voiceBtn = document.getElementById('voiceInputBtn');
+
+    // Quick Prompt Chips
+    promptChips.forEach(chip => {
+        chip.addEventListener('click', function() {
+            chatInput.value = this.getAttribute('data-prompt');
+            chatInput.focus();
+        });
+    });
+
+    // Clear Chat
+    clearChatBtn.addEventListener('click', function() {
+        chatMessages.innerHTML = `
+            <div class="chat-bubble chat-bubble-ai">
+                <div class="d-flex align-items-center gap-2 mb-2">
+                    <span class="badge bg-success bg-opacity-20 text-success p-1 rounded-circle"><i class="fas fa-seedling"></i></span>
+                    <span class="fw-bold text-success small">Kissan Assistant</span>
+                </div>
+                <p class="mb-0">Session reset. What farming challenge can I help you resolve?</p>
+            </div>
+        `;
+    });
+
+    // Send Message Handler
+    chatForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const message = chatInput.value.trim();
+        if (!message) return;
+
+        // Append User Message Bubble
+        appendUserMessage(message);
+        chatInput.value = '';
+        chatInput.disabled = true;
+        sendBtn.disabled = true;
+
+        // Append Typing Bubble
+        const typingId = 'typingIndicator_' + Date.now();
+        appendTypingIndicator(typingId);
+
+        try {
+            const response = await fetch('/api/ai-chat-advanced/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': getCookie('csrftoken')
+                },
+                body: JSON.stringify({ message: message })
+            });
+
+            removeElement(typingId);
+
+            if (response.ok) {
+                const data = await response.json();
+                const aiText = data.response || "I apologize, but I could not synthesize a response. Please try again.";
+                appendAIMessage(aiText, data.engine || 'groq');
+            } else {
+                appendAIMessage("Our agronomist server experienced a momentary timeout. Please try your question again.", "system");
+            }
+        } catch (err) {
+            removeElement(typingId);
+            appendAIMessage("Network connection interrupted. Please verify your internet and retry.", "system");
+        } finally {
+            chatInput.disabled = false;
+            sendBtn.disabled = false;
+            chatInput.focus();
+        }
+    });
+
+    function appendUserMessage(text) {
+        const div = document.createElement('div');
+        div.className = 'chat-bubble chat-bubble-user';
+        div.textContent = text;
+        chatMessages.appendChild(div);
+        scrollToBottom();
+    }
+
+    function appendAIMessage(text, engine) {
+        const div = document.createElement('div');
+        div.className = 'chat-bubble chat-bubble-ai';
+        
+        // Simple Markdown parsing for bold and bullet points
+        let formatted = escapeHTML(text)
+            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+            .replace(/\n\n/g, '</p><p>')
+            .replace(/\n/g, '<br>');
+
+        div.innerHTML = `
+            <div class="d-flex align-items-center gap-2 mb-2">
+                <span class="badge bg-success bg-opacity-20 text-success p-1 rounded-circle"><i class="fas fa-seedling"></i></span>
+                <span class="fw-bold text-success small">Kissan Assistant</span>
+                <span class="badge bg-dark bg-opacity-25 text-muted ms-auto" style="font-size: 0.7rem;">${engine}</span>
+            </div>
+            <p class="mb-0">${formatted}</p>
+        `;
+        chatMessages.appendChild(div);
+        scrollToBottom();
+    }
+
+    function appendTypingIndicator(id) {
+        const div = document.createElement('div');
+        div.id = id;
+        div.className = 'chat-bubble chat-bubble-ai';
+        div.innerHTML = `
+            <div class="d-flex align-items-center gap-2">
+                <small class="text-muted">Analyzing agronomic data</small>
+                <div class="d-flex align-items-center gap-1 ms-1">
+                    <span class="typing-dot"></span>
+                    <span class="typing-dot"></span>
+                    <span class="typing-dot"></span>
+                </div>
+            </div>
+        `;
+        chatMessages.appendChild(div);
+        scrollToBottom();
+    }
+
+    function removeElement(id) {
+        const el = document.getElementById(id);
+        if (el) el.remove();
+    }
+
+    function scrollToBottom() {
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    function escapeHTML(str) {
+        return str.replace(/[&<>'"]/g, 
+            tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag)
+        );
+    }
+
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+
+    // Voice recognition fallback
+    if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+        const SpeechRec = window.SpeechRecognition || window.webkitSpeechRecognition;
+        const recognition = new SpeechRec();
+        recognition.continuous = false;
+        recognition.interimResults = false;
+
+        voiceBtn.addEventListener('click', function() {
+            recognition.start();
+            voiceBtn.classList.add('text-danger');
+        });
+
+        recognition.onresult = function(event) {
+            const transcript = event.results[0][0].transcript;
+            chatInput.value = transcript;
+            voiceBtn.classList.remove('text-danger');
+            chatForm.dispatchEvent(new Event('submit'));
+        };
+
+        recognition.onerror = function() {
+            voiceBtn.classList.remove('text-danger');
+        };
+    } else {
+        voiceBtn.style.display = 'none';
+    }
+});
+</script>
+{% endblock %}

@@ -1,48 +1,106 @@
 {% load static %}
-
-<!DOCTYPE html>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-    <div class="container">
-        <a class="navbar-brand" href="{% url 'main:index' %}">
-            <img src="{% static 'images/logo.png' %}" alt="Kissan Connect Logo" class="logo" />
+<nav class="navbar navbar-expand-lg kc-navbar fixed-top">
+    <div class="container-fluid px-3 px-xl-5">
+        <!-- Brand Logo -->
+        <a class="navbar-brand kc-brand me-3 me-xl-4" href="{% url 'main:index' %}">
+            <span class="kc-brand-badge">
+                <i class="fas fa-seedling"></i>
+            </span>
+            <span>Kissan<span style="color: var(--kc-emerald);">Connect</span></span>
         </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+
+        <!-- Mobile Toggler -->
+        <button class="navbar-toggler border-0 p-2" type="button" data-bs-toggle="collapse" data-bs-target="#kcNavbarContent" aria-controls="kcNavbarContent" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fas fa-bars" style="color: var(--text-main); font-size: 1.25rem;"></i>
         </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ml-auto">
+
+        <!-- Navbar Menu -->
+        <div class="collapse navbar-collapse" id="kcNavbarContent">
+            <ul class="navbar-nav mx-auto mb-2 mb-lg-0 gap-1 align-items-lg-center">
+                {% if user.is_authenticated %}
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'main:index' %}">Home</a>
+                    <a class="nav-link kc-nav-link active-brand" href="{% url 'main:dashboard' %}">
+                        <i class="fas fa-tachometer-alt text-success"></i> My Workstation
+                    </a>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <a class="nav-link kc-nav-link" href="{% url 'main:index' %}">Home</a>
+                </li>
+                {% endif %}
+
+                <li class="nav-item">
+                    <a class="nav-link kc-nav-link" href="{% url 'main:disease_detection' %}">Plant Doctor</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'main:about' %}">About</a>
+                    <a class="nav-link kc-nav-link" href="{% url 'main:crop_suggestions' %}">Crop Advisory</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'main:services' %}">Services</a>
+                    <a class="nav-link kc-nav-link" href="{% url 'main:weather' %}">Weather Intel</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'main:news' %}">News</a>
+                    <a class="nav-link kc-nav-link" href="{% url 'main:marketplace' %}">Marketplace</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'main:marketplace' %}">Marketplace</a>
-                </li>
+
+                <!-- More Modules Dropdown -->
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Blog</a>
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
-                        <a class="dropdown-item" href="{% url 'main:index' %}">Blog Posts</a>
-                    </div>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownResources" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</a>
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownResources">
-                        <a class="dropdown-item" href="{% url 'main:index' %}">FAQ</a>
-                        <a class="dropdown-item" href="{% url 'main:index' %}">Pricing</a>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'main:contact' %}">Contact</a>
+                    <a class="nav-link kc-nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        More Tools
+                    </a>
+                    <ul class="dropdown-menu shadow border p-2" style="background: var(--bg-surface-elevated); border-color: var(--border-subtle); border-radius: 12px; min-width: 200px;">
+                        <li><a class="dropdown-item rounded-2 py-2 small" href="{% url 'main:carbon_tracker' %}" style="color: var(--text-main);"><i class="fas fa-satellite text-success me-2"></i> Carbon MRV</a></li>
+                        <li><a class="dropdown-item rounded-2 py-2 small" href="{% url 'main:news' %}" style="color: var(--text-main);"><i class="fas fa-newspaper text-warning me-2"></i> Mandi MSP Radar</a></li>
+                        <li><a class="dropdown-item rounded-2 py-2 small" href="{% url 'main:about' %}" style="color: var(--text-main);"><i class="fas fa-layer-group text-primary me-2"></i> System Architecture</a></li>
+                        <li><a class="dropdown-item rounded-2 py-2 small" href="{% url 'main:services' %}" style="color: var(--text-main);"><i class="fas fa-cubes text-info me-2"></i> API Services</a></li>
+                        <li><a class="dropdown-item rounded-2 py-2 small" href="{% url 'main:contact' %}" style="color: var(--text-main);"><i class="fas fa-headset text-secondary me-2"></i> Support & Contact</a></li>
+                    </ul>
                 </li>
             </ul>
+
+            <!-- Right Controls: Theme Toggle + AI Agronomist + Auth -->
+            <div class="d-flex align-items-center gap-2 mt-3 mt-lg-0 flex-shrink-0">
+                <!-- 1-Click Dark/Light Mode Switcher -->
+                <button type="button" class="kc-theme-toggle" id="kcThemeToggleBtn" title="Toggle Light / Dark Mode" aria-label="Toggle Theme">
+                    <i class="fas fa-sun" id="kcThemeIcon"></i>
+                </button>
+
+                <!-- AI Agronomist Quick Chat CTA -->
+                <a href="{% url 'main:chat' %}" class="btn btn-kc-outline py-1 px-3 rounded-pill fw-semibold" style="font-size: 0.85rem;">
+                    <i class="fas fa-robot text-success"></i>
+                    <span class="d-none d-sm-inline">AI Agronomist</span>
+                </a>
+
+                {% if user.is_authenticated %}
+                <!-- Authenticated User Profile Dropdown -->
+                <div class="dropdown">
+                    <button class="btn btn-sm d-flex align-items-center gap-2 border-0 bg-transparent p-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <div style="width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, var(--kc-emerald), var(--kc-emerald-dark)); color: white; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; font-size: 0.95rem; box-shadow: 0 2px 8px rgba(16,185,129,0.35);">
+                            {{ user.first_name|default:user.username|slice:":1"|upper }}
+                        </div>
+                        <i class="fas fa-chevron-down small" style="color: var(--text-muted); font-size: 0.75rem;"></i>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end shadow border p-2" style="background: var(--bg-surface-elevated); border-color: var(--border-subtle); border-radius: 14px; min-width: 220px;">
+                        <li class="px-3 py-2 border-bottom mb-2" style="border-color: var(--border-subtle) !important;">
+                            <div class="fw-bold" style="color: var(--text-main); font-size: 0.92rem;">{{ user.first_name|default:user.username }}</div>
+                            <small style="color: var(--text-muted); font-size: 0.8rem;">{{ user.email }}</small>
+                        </li>
+                        <li><a class="dropdown-item rounded-2 py-2 small" href="{% url 'main:dashboard' %}" style="color: var(--text-main);"><i class="fas fa-tachometer-alt me-2 text-success"></i> My Workstation</a></li>
+                        <li><a class="dropdown-item rounded-2 py-2 small" href="{% url 'main:marketplace' %}" style="color: var(--text-main);"><i class="fas fa-shopping-bag me-2 text-warning"></i> My Orders</a></li>
+                        <li><a class="dropdown-item rounded-2 py-2 small" href="{% url 'main:disease_detection' %}" style="color: var(--text-main);"><i class="fas fa-microscope me-2 text-danger"></i> Pathology History</a></li>
+                        <li><hr class="dropdown-divider my-2" style="border-color: var(--border-subtle);"></li>
+                        <li><a class="dropdown-item rounded-2 py-2 text-danger fw-semibold small" href="{% url 'main:logout' %}"><i class="fas fa-sign-out-alt me-2"></i> Sign Out</a></li>
+                    </ul>
+                </div>
+                {% else %}
+                <!-- Guest Actions -->
+                <a href="{% url 'main:login' %}" class="btn btn-kc-secondary py-1 px-3" style="font-size: 0.85rem;">
+                    Sign In
+                </a>
+                <a href="{% url 'main:signup' %}" class="btn btn-kc-primary py-1 px-3" style="font-size: 0.85rem;">
+                    Get Started <i class="fas fa-arrow-right small ms-1"></i>
+                </a>
+                {% endif %}
+            </div>
         </div>
     </div>
 </nav>

@@ -1,7 +1,7 @@
 console.log('🌤️ Weather Intelligence JavaScript loaded');
 
-// OpenWeatherMap API configuration
-const WEATHER_API_KEY = 'd81ecfb58ee970bc5f931e3717bca589'; // Your existing API key
+// OpenWeatherMap API configuration (Read from window or backend proxy)
+const WEATHER_API_KEY = window.WEATHER_API_KEY || '';
 const WEATHER_BASE_URL = 'https://api.openweathermap.org/data/2.5';
 
 // Global weather data storage

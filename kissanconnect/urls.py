@@ -18,9 +18,15 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from main import views as main_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    # Root-level aliases for auth views to support both un-namespaced and namespaced URL resolution
+    path('login/', main_views.user_login, name='login'),
+    path('signup/', main_views.user_signup, name='signup'),
+    path('logout/', main_views.user_logout, name='logout'),
+    path('dashboard/', main_views.dashboard, name='dashboard'),
     path('', include('main.urls')),
 ]
 

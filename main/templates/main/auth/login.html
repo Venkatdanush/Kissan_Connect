@@ -1,0 +1,130 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}Sign In — KissanConnect Command Center{% endblock %}
+
+{% block content %}
+<section class="min-vh-100 d-flex align-items-center py-5 position-relative" style="background: var(--bg-body); padding-top: 120px !important;">
+    <!-- Ambient background glow -->
+    <div class="ambient-glow-orb orb-emerald"></div>
+    <div class="ambient-glow-orb orb-sky"></div>
+
+    <div class="container position-relative" style="z-index: 2;">
+        <div class="row g-0 justify-content-center align-items-stretch shadow-lg rounded-4 overflow-hidden border" style="border-color: var(--border-subtle); max-width: 1000px; margin: 0 auto; background: var(--bg-surface);">
+            
+            <!-- Left Branding & Cinematic Visual Panel -->
+            <div class="col-lg-5 d-none d-lg-flex flex-column justify-content-between p-5 text-white position-relative" style="background: linear-gradient(135deg, rgba(6,78,59,0.92), rgba(15,23,42,0.96));">
+                <img src="https://images.unsplash.com/photo-1592982537447-7440770cbfc9?auto=format&fit=crop&w=1200&q=80" 
+                     alt="Agritech Fields" class="position-absolute top-0 start-0 w-100 h-100 object-fit-cover" style="opacity: 0.18; z-index: 0;">
+                
+                <div class="position-relative" style="z-index: 1;">
+                    <div class="d-flex align-items-center gap-2 mb-4">
+                        <span class="kc-brand-badge">
+                            <i class="fas fa-seedling"></i>
+                        </span>
+                        <span class="fw-bold fs-4 text-white">Kissan<span style="color: var(--kc-emerald-light);">Connect</span></span>
+                    </div>
+                    <span class="kc-badge kc-badge-emerald mb-3">Farmer Workstation</span>
+                    <h3 class="fw-bold text-white mb-3">Real-Time Precision Agriculture Intelligence</h3>
+                    <p class="text-white-50 small mb-0" style="line-height: 1.6;">
+                        Sign in to access your personal farm microclimate radar, computer vision plant pathology history, and soil carbon sequestration telemetry.
+                    </p>
+                </div>
+
+                <div class="position-relative pt-4 border-top border-secondary border-opacity-25" style="z-index: 1;">
+                    <div class="d-flex align-items-center gap-3">
+                        <div class="pulse-dot"></div>
+                        <small class="text-white-50">Groq LPU AI & Sentinel-2 Satellite Sync Active</small>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Login Form Panel -->
+            <div class="col-lg-7 p-4 p-md-5 d-flex flex-column justify-content-center" style="background: var(--bg-surface);">
+                <div class="mb-4">
+                    <span class="kc-badge kc-badge-emerald mb-2">Secure Authentication</span>
+                    <h2 class="fw-bold mb-1">Welcome Back</h2>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">Enter your credentials to access your farm command center.</p>
+                </div>
+
+                <!-- 1-Click Recruiter Demo Account Helper Card -->
+                <div class="kc-card p-3 mb-4 rounded-3" style="background: var(--bg-surface-subtle); border-left: 3px solid var(--kc-emerald);">
+                    <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+                        <div>
+                            <span class="badge bg-success mb-1" style="font-size: 0.7rem;"><i class="fas fa-star me-1"></i> RECRUITER / REVIEWER DEMO</span>
+                            <div class="small fw-semibold" style="color: var(--text-main);">Instant 1-Click Demo Sign In</div>
+                            <small style="color: var(--text-muted);">Preloaded with Ramesh Patel's 5-Acre Farm, Scans & Orders</small>
+                        </div>
+                        <button type="button" class="btn btn-kc-primary btn-sm py-1 px-3" id="demoAutoFillBtn">
+                            <i class="fas fa-magic me-1"></i> Autofill Demo
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Login Form -->
+                <form method="POST" action="{% url 'main:login' %}">
+                    {% csrf_token %}
+                    
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold small" style="color: var(--text-main);">Username or Email Address</label>
+                        <div class="input-group">
+                            <span class="input-group-text border-end-0" style="background: var(--bg-surface-subtle); border-color: var(--border-subtle); color: var(--text-muted);">
+                                <i class="fas fa-user"></i>
+                            </span>
+                            <input type="text" name="username" id="loginUsername" class="form-control kc-input border-start-0" 
+                                   placeholder="e.g. demo_farmer or farmer@kissan.org" required>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <div class="d-flex justify-content-between align-items-center mb-1">
+                            <label class="form-label fw-semibold small mb-0" style="color: var(--text-main);">Password</label>
+                        </div>
+                        <div class="input-group">
+                            <span class="input-group-text border-end-0" style="background: var(--bg-surface-subtle); border-color: var(--border-subtle); color: var(--text-muted);">
+                                <i class="fas fa-lock"></i>
+                            </span>
+                            <input type="password" name="password" id="loginPassword" class="form-control kc-input border-start-0" 
+                                   placeholder="••••••••" required>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-kc-primary w-100 py-3 fw-bold mb-3">
+                        <i class="fas fa-sign-in-alt me-1"></i> Sign In to Workstation
+                    </button>
+                </form>
+
+                <div class="text-center pt-3 border-top" style="border-color: var(--border-subtle) !important;">
+                    <p class="small mb-0" style="color: var(--text-muted);">
+                        Don't have an account? 
+                        <a href="{% url 'main:signup' %}" class="fw-bold text-success text-decoration-none ms-1">Create Free Farm Account &rarr;</a>
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const demoBtn = document.getElementById('demoAutoFillBtn');
+        const userInp = document.getElementById('loginUsername');
+        const passInp = document.getElementById('loginPassword');
+        
+        if (demoBtn && userInp && passInp) {
+            demoBtn.addEventListener('click', function() {
+                userInp.value = 'demo_farmer';
+                passInp.value = 'demo1234';
+                userInp.style.borderColor = 'var(--kc-emerald)';
+                passInp.style.borderColor = 'var(--kc-emerald)';
+                demoBtn.innerHTML = '<i class="fas fa-check me-1"></i> Filled! Ready to Sign In';
+                demoBtn.classList.remove('btn-kc-primary');
+                demoBtn.classList.add('btn-success');
+            });
+        }
+    });
+</script>
+{% endblock %}
